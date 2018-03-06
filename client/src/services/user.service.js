@@ -15,4 +15,7 @@ function login(user) {
 function logout() {
       localStorage.removeItem('user');
 }
-function register() {}
+function register(user) {
+    console.log('http user register',user)
+    return axios.post(apiBaseUrl  + 'userregister',user);
+}

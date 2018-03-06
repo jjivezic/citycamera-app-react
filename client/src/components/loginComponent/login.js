@@ -1,11 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Register } from '../registerComponent/register';
-import { userService } from '../../services/user.service'
+import { userService } from '../../services/user.service';
+import  {sessionStorage}  from '../../sessionStorage/storage';
+import { Link } from 'react-router-dom';
 
 export class Login extends React.Component {
 
     constructor(props) {
+       console.log('sessionStorage',sessionStorage)     
+        
         super(props);
 
         this.state = {
@@ -32,6 +35,8 @@ export class Login extends React.Component {
         userService.login(user)
             .then(response => {
                 console.log('res', response);
+                sessionStorage.create(response);
+                this.props.history.push("/dashboard");
             }).catch(function (error) {
                 console.log(error);
             });
@@ -49,10 +54,7 @@ export class Login extends React.Component {
                     <br />
                     <button>Login</button>
                 </form>
-                <Router>
-                    <Link to="/register">Register</Link>
-                </Router>
-
+                <Link to='/register'>Register</Link>
             </div>
         );
     }
