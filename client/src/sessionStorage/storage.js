@@ -1,4 +1,4 @@
-export const sessionStorage ={
+export const sessionStorage = {
 
 
   /**
@@ -13,10 +13,11 @@ export const sessionStorage ={
    */
   destroy() {
     localStorage.removeItem('user');
+  },
+ isAuth() {
+    let data = localStorage.getItem('user');
+    if (!data) return false;
+    var session = JSON.parse(data);
+    return (session && session.token);
   }
 }
-// export const userService = {
-//   login,
-//   logout,
-//   register
-// };

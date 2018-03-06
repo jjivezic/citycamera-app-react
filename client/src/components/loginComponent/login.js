@@ -1,22 +1,23 @@
 import React from 'react';
 import { Register } from '../registerComponent/register';
 import { userService } from '../../services/user.service';
-import  {sessionStorage}  from '../../sessionStorage/storage';
-import { Link } from 'react-router-dom';
+import { sessionStorage } from '../../sessionStorage/storage';
+import { Link, Redirect } from 'react-router-dom';
 
 export class Login extends React.Component {
 
     constructor(props) {
-       console.log('sessionStorage',sessionStorage)     
-        
+        console.log('sessionStorage', sessionStorage)
         super(props);
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirectToReferrer: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     handleChange = event => {
@@ -24,6 +25,7 @@ export class Login extends React.Component {
             [event.target.name]: event.target.value
         });
     }
+
 
     handleSubmit = event => {
         event.preventDefault();
@@ -34,15 +36,30 @@ export class Login extends React.Component {
         console.log('user', user);
         userService.login(user)
             .then(response => {
-                console.log('res', response);
-                sessionStorage.create(response);
-                this.props.history.push("/dashboard");
+                console.log('res', response.data);
+                sessionStorage.create(response.data);
+
+                if (sessionStorage.isAuth()) {
+                    this.props.history.push("/dashboard");
+
+                } else {
+                    this.props.history.push("/register");
+                }
             }).catch(function (error) {
                 console.log(error);
             });
     }
 
     render() {
+        const { from } = this.props.location.state || { from: { pathname: '/' } }
+        console.log('from', from)
+        const { redirectToReferrer } = this.state;
+
+        if (redirectToReferrer) {
+            return (
+                <Redirect to={from} />
+            )
+        }
         return (
             <div className="login-page">
                 <h1>Login page</h1>
