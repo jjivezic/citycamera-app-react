@@ -7,7 +7,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
       <Route
         {...rest}
         render={props =>
-          sessionService.isAuth() === true ? (
+          sessionService.isAuth() !== false ? (
             <Component {...props} />
           ) : (
             <Redirect

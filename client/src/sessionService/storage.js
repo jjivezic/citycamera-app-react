@@ -14,10 +14,33 @@ export const sessionService = {
   destroy() {
     localStorage.removeItem('user');
   },
- isAuth() {
+  getUserId() {
     let data = localStorage.getItem('user');
-    if (!data){return false} else {return true};
-    // var session = JSON.parse(data);
-    // return (session && session.token);
+    if (!data) return null;
+    var user = JSON.parse(data);
+    return (user) ? user.user._id : "";
+  },
+  /**
+   * Fetch token from local storage
+   * @returns {any}
+   */
+  getSessionToken() {
+    let data = localStorage.getItem('user');
+    if (!data) return null;
+    let session = JSON.parse(data);
+
+    return (session && session.token) ? session.token : null;
+  }
+,
+  isAuth() {
+    let data = localStorage.getItem('user');
+    if (!data) {
+      return false
+    } else {
+      var session = JSON.parse(data);
+      console.log('session111', session.token)
+      return session.token
+    };
+;
   }
 }
