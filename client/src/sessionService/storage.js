@@ -1,4 +1,4 @@
-export const sessionStorage = {
+export const sessionService = {
 
 
   /**
@@ -16,8 +16,8 @@ export const sessionStorage = {
   },
  isAuth() {
     let data = localStorage.getItem('user');
-    if (!data) return false;
-    var session = JSON.parse(data);
-    return (session && session.token);
+    if (!data){return false} else {return true};
+    // var session = JSON.parse(data);
+    // return (session && session.token);
   }
 }

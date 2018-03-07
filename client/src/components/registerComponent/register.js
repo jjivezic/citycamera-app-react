@@ -39,7 +39,9 @@ export class Register extends React.Component {
                 console.log(error);
             });
     }
-
+    validateForm() {
+        return this.state.username.length > 0 && this.state.password.length > 3;
+    }
     render() {
         return (
             <div className="login-page">

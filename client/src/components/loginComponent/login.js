@@ -1,13 +1,12 @@
 import React from 'react';
 import { Register } from '../registerComponent/register';
 import { userService } from '../../services/user.service';
-import { sessionStorage } from '../../sessionStorage/storage';
+import { sessionService } from '../../sessionService/storage';
 import { Link, Redirect } from 'react-router-dom';
 
 export class Login extends React.Component {
 
     constructor(props) {
-        console.log('sessionStorage', sessionStorage)
         super(props);
 
         this.state = {
@@ -37,24 +36,25 @@ export class Login extends React.Component {
         userService.login(user)
             .then(response => {
                 console.log('res', response.data);
-                sessionStorage.create(response.data);
+                sessionService.create(response.data);
 
-                if (sessionStorage.isAuth()) {
+                if (sessionService.isAuth()) {
+                    this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
-
-                } else {
-                    this.props.history.push("/register");
                 }
             }).catch(function (error) {
                 console.log(error);
             });
     }
 
+    validateForm() {
+        return this.state.username.length > 0 && this.state.password.length > 3;
+    }
+
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } }
-        console.log('from', from)
         const { redirectToReferrer } = this.state;
-
+        console.log('redirectToReferrer', redirectToReferrer,this.state)
         if (redirectToReferrer) {
             return (
                 <Redirect to={from} />
@@ -69,7 +69,7 @@ export class Login extends React.Component {
                     <br />
                     Password:<input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     <br />
-                    <button>Login</button>
+                    <button disabled={!this.validateForm()}>Login</button>
                 </form>
                 <Link to='/register'>Register</Link>
             </div>
