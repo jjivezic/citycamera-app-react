@@ -3,20 +3,38 @@ import { Link, Route } from 'react-router-dom';
 import { sessionService } from '../../sessionService/storage';
 import { filesService } from '../../services/file.service';
 
-export const Folders = () => {
-    console.log('filesService Folders componenta')
-    filesService.userFolders().then(response => {
-        console.log('response', response.data);
-    }).catch(function (error) {
-        console.log('error 111',error);
-    });
-    return (
+console.log('filesService Folders componenta')
 
-        <div>
-            <h1>Folders</h1>
-            <ul><li></li>
-            </ul>
-        </div>
-    )
+export class Folders extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            items: []
+        }
+    }
+    componentWillMount() {
+     filesService.userFolders().then(response => {
+            console.log('response', response.data);
+            this.setState({
+                items: response.data.folders
+            });
+        }).catch(function (error) {
+            console.log('error filesService', error);
+        });
+    }
 
+    render() {
+        let items = this.state.items;
+        return (
+
+            <div>
+                <h1>Folders</h1>
+                <ul>
+                    {items.map((item, i) =>
+                        <li> <a href="#" key={i}>{item}</a>  </li>
+                    )}
+                </ul>
+            </div>
+        )
+    }
 }
