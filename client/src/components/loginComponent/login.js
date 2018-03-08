@@ -34,7 +34,9 @@ export class Login extends React.Component {
         console.log('user', user);
         userService.login(user)
             .then(response => {
+
                 console.log('res', response.data);
+
                 sessionService.create(response.data);
 
                 if (sessionService.isAuth()) {
@@ -51,9 +53,12 @@ export class Login extends React.Component {
     }
 
     render() {
+
         const { from } = this.props.location.state || { from: { pathname: '/' } }
         const { redirectToReferrer } = this.state;
-        console.log('redirectToReferrer', redirectToReferrer,this.state)
+
+        console.log('redirectToReferrer', redirectToReferrer, this.state)
+
         if (redirectToReferrer) {
             return (
                 <Redirect to={from} />
