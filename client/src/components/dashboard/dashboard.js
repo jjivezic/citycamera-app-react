@@ -7,9 +7,10 @@ import { Test } from '../testComponent/test';
 
 export const Dashboard = () => {
     return (
+
         <div>
-            <nav className="navbar navbar">
-                <ul className="nav">
+            <nav className="">
+                <ul className="">
 
                     <li>
                         <Link to="/dashboard/folder">Folders</Link>
