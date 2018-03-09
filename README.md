@@ -23,14 +23,17 @@ https://github.com/facebook/create-react-app
 In the project directory Client:
 
 To install React node_modules run
+
 npm install
 
 npm start
+
 Runs the app in the development mode.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
 npm run build
+
 Builds the app for production to the build folder.
 
 Contributors
