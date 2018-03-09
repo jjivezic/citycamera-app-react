@@ -24,9 +24,8 @@ node server
 https://github.com/facebook/create-react-app
 
 **In the project directory Client**
+
 To install node_modules run :
-
-
 
 ```sh
 npm install
