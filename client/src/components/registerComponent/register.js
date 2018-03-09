@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { userService } from '../../services/user.service';
-import { Login } from '../loginComponent/login';
 
 export class Register extends React.Component {
     constructor(props) {

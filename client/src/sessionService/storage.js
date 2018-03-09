@@ -29,7 +29,13 @@ export const sessionService = {
     let session = JSON.parse(data);
     return (session && session.token) ? session.token : null;
   },
-
+  isAdmin() {
+    let data = localStorage.getItem('user');
+    if (!data) return null;
+    var admin = JSON.parse(data).user;
+    console.log('admin session',admin)
+    return (admin) ? admin.isAdmin : "";
+  },
   isAuth() {
     let data = localStorage.getItem('user');
     if (!data) {
@@ -38,6 +44,6 @@ export const sessionService = {
       var session = JSON.parse(data);
       console.log('session111', session.token)
       return session.token
-    };;
+    }
   }
 }

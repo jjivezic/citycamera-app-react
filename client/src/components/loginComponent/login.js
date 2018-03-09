@@ -1,5 +1,4 @@
 import React from 'react';
-import { Register } from '../registerComponent/register';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
 import { Link, Redirect } from 'react-router-dom';
