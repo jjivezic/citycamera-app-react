@@ -22,7 +22,8 @@ https://github.com/facebook/create-react-app
 
 In the project directory Client:
 
-To install React node_modules run npm install
+To install React node_modules run
+npm install
 
 npm start
 Runs the app in the development mode.
