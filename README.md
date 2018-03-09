@@ -42,6 +42,7 @@ To build app for production mode run:
 npm run build
 ```
 **Contributors**
+
 Laslo Horvat Borislav Stamenic Jelena Ivezic
 
 License
