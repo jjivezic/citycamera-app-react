@@ -2,7 +2,8 @@ config     = require('./config/');
 logger     = require('./lib/logger');
 logger.checkLoggedFiles();
 
-var express    = require('express'),
+var express  = require('express'),
+        cors = require('cors'),
   bodyParser = require('body-parser'),
   mongoose   = require('mongoose'),
   path       = require('path'),
@@ -17,6 +18,14 @@ var router                   = require('./router'),
   errorHandlerMiddleware   = require("./middleware/errorHandlerMiddleware").errorHandlerMiddleware;
 
 var app = express();
+
+app
+  .use(cors())
+  .use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    next();
+  });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
