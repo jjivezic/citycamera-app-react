@@ -15,6 +15,7 @@ API documentation is available in project doc folder. After changing the API (cu
 gulp apidoc
 
 Start server
+
 node server
 
 This project was bootstrapped with Create React App.
