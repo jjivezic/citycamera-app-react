@@ -28,13 +28,12 @@ export class Register extends React.Component {
             password: this.state.password,
             email: this.state.email
         };
-        console.log('user', user);
         userService.register(user)
             .then(response => {
-                console.log('res', response);
                 this.props.history.push("/");
             }).catch(function (error) {
-                console.log(error);
+               console.log('Register error',error);
+
             });
     }
     validateForm() {

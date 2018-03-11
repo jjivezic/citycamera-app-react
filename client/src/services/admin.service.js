@@ -7,7 +7,8 @@ export const adminService = {
     listUsers,
     adminListFolders,
     adminListFiles,
-    adminDeleteFiles
+    adminDeleteFiles,
+    adminUpdateUser
 };
 function listUsers() {
     console.log('http list users',)
@@ -26,4 +27,12 @@ function  adminListFiles(folder) {
 function adminDeleteFiles(fileId) {
     console.log('http files delete',fileId)
     return axios.delete(apiBaseUrl + 'file/delete/'+ fileId , { headers: {"x-access-token": sessionService.getSessionToken() } });
+}
+function  adminListFiles(folder) {
+    console.log('http list files',folder)
+    return axios.get(apiBaseUrl + 'file/'+folder +'/files', { headers: {"x-access-token": sessionService.getSessionToken() } });
+}
+function  adminUpdateUser(user) {
+    console.log('http list files',user)
+return axios.put(apiBaseUrl + 'user/'+user._id ,{isAdmin:user.isAdmin}, { headers: {"x-access-token": sessionService.getSessionToken() } });
 }

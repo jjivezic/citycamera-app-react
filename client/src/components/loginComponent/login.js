@@ -30,20 +30,15 @@ export class Login extends React.Component {
             username: this.state.username,
             password: this.state.password
         };
-        console.log('user', user);
         userService.login(user)
             .then(response => {
-
-                console.log('res', response.data);
-
                 sessionService.create(response.data);
-
                 if (sessionService.isAuth()) {
                     this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
                 }
             }).catch(function (error) {
-                console.log(error);
+                console.log('Login error',error);
             });
     }
 
