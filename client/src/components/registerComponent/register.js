@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 
 export class Register extends React.Component {
@@ -31,9 +32,9 @@ export class Register extends React.Component {
         userService.register(user)
             .then(response => {
                 this.props.history.push("/");
+                toast.success("Account is successfully created!")
             }).catch(function (error) {
-               console.log('Register error',error);
-
+               toast.error("Error creating account!")
             });
     }
     validateForm() {
@@ -51,7 +52,7 @@ export class Register extends React.Component {
                     <br />
                     Password:<input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     <br />
-                    <button>Register</button>
+                    <button  disabled={!this.validateForm()}>Register</button>
                 </form>
                 <Link to='/'>Login</Link>
             </div>

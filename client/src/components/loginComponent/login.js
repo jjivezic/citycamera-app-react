@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
 import { Link, Redirect } from 'react-router-dom';
@@ -17,7 +18,6 @@ export class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -36,9 +36,10 @@ export class Login extends React.Component {
                 if (sessionService.isAuth()) {
                     this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
+                    toast.success("User is successfully loged !")
                 }
             }).catch(function (error) {
-                console.log('Login error',error);
+                toast.error("Error Wrong username or password!")
             });
     }
 
@@ -67,9 +68,11 @@ export class Login extends React.Component {
                     <br />
                     Password:<input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     <br />
-                    <button disabled={!this.validateForm()}>Login</button>
+                    <button disabled={!this.validateForm()} >Login</button>
                 </form>
+                <br />
                 <Link to='/register'>Register</Link>
+
             </div>
         );
     }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+
 import { sessionService } from '../../sessionService/storage';
 import { adminService } from '../../services/index';
 
@@ -32,8 +34,10 @@ export class Users extends React.Component {
         user.isAdmin = !user.isAdmin;  
         adminService.adminUpdateUser(user).then(response => {
             this.getListOfUsers();
+            toast.success("User is successfully updated!")
+
          }).catch(function (error) {
-                console.log('error admin UpdateUser', error);
+            toast.error("Error updating user!")
             });
 
     }
