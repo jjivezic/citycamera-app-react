@@ -14,11 +14,12 @@ export class Register extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.options = {
+            autoClose: 3000,
+            hideProgressBar: true,
+        };
     }
-    options = {
-        autoClose: 3000,
-        hideProgressBar: true,
-    };
+;
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -35,9 +36,9 @@ export class Register extends React.Component {
         userService.register(user)
             .then(response => {
                 this.props.history.push("/");
-                toast.success("Account is successfully created!",this.options)
+                toast.success("Account is successfully created!", this.options)
             }).catch(function (error) {
-               toast.error("Error creating account!",this.options)
+                toast.error("Error creating account!", this.options)
             });
     }
     validateForm() {
@@ -45,17 +46,22 @@ export class Register extends React.Component {
     }
     render() {
         return (
-            <div className="login-page">
+            <div className="auth-page">
                 <h1>Register page</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <br />
-                    Username:<input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                    <br />
-                    Email:<input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-                    <br />
-                    Password:<input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
-                    <br />
-                    <button  disabled={!this.validateForm()}>Register</button>
+                    <div className="form-group">
+                        <label>  Username:</label>
+                        <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>  Email:</label>
+                        <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Password:</label>
+                        <input className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                    </div>
+                    <button className="btn btn-primary" disabled={!this.validateForm()}>Register</button>
                 </form>
                 <Link to='/'>Login</Link>
             </div>

@@ -54,7 +54,6 @@ exports.folders = function (req, res, next) {
   });
 };
 exports.foldersByUserId = function (req, res, next) {
-console.log('userId',userId)
   var userId = req.params.userId;
 
   provider.foldersByUserId(userId).then(function (folders) {

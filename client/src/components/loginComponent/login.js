@@ -16,12 +16,12 @@ export class Login extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.options = {
+            autoClose: 3000,
+            hideProgressBar: true,
+        };
     }
-  options = {
-        autoClose: 3000,
-        hideProgressBar: true,
-    };
+
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -40,10 +40,10 @@ export class Login extends React.Component {
                 if (sessionService.isAuth()) {
                     this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
-                    toast.success("User is successfully loged !",this.options)
+                    toast.success("User is successfully loged !", this.options)
                 }
             }).catch(function (error) {
-                toast.error("Error Wrong username or password!",this.options)
+                toast.error("Error Wrong username or password!", this.options)
             });
     }
 
@@ -64,19 +64,24 @@ export class Login extends React.Component {
             )
         }
         return (
-            <div className="login-page">
+            <div className="container">
+            <div className="auth-page">
                 <h1>Login page</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <br />
-                    Username:<input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                    <br />
-                    Password:<input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
-                    <br />
-                    <button disabled={!this.validateForm()} >Login</button>
+                    <div className="form-group">
+                        <label>  Username:</label>
+                        <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+
+                    </div>
+                    <div className="form-group">
+                        <label>  Password:</label>
+                        <input className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                    </div>
+                    <button className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
                 </form>
                 <br />
                 <Link to='/register'>Register</Link>
-
+                </div>
             </div>
         );
     }

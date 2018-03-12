@@ -12,11 +12,12 @@ export class Users extends React.Component {
             users: [],
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.options = {
+            autoClose: 3000,
+            hideProgressBar: true,
+        };
     }
-    options = {
-        autoClose: 3000,
-        hideProgressBar: true,
-    };
+
     getListOfUsers(){
         adminService.listUsers().then(response => {
             this.setState({

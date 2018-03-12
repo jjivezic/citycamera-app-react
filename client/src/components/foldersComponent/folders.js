@@ -32,35 +32,78 @@ export class Folders extends React.Component {
             });
         }
     }
+    adminGetFiles(event) {
+        adminService.adminListFiles(event.target.innerText).then(response => {
+            console.log('response all files admin', response.data.files);
+            this.setState({
+                files: response.data.files
+            });
+            this.props.history.push("/dashboard/folder/files");
+        }).catch(function (error) {
+            console.log('error getAllFilesForFolder admin', error);
+        });
+    }
+    userGetFiles(event) {
+        filesService.userFiles(event.target.innerText).then(response => {
+            console.log('response all files', response.data.files);
+            this.setState({
+                files: response.data.files
+            });
+            this.props.history.push("/dashboard/folder/files");
+        }).catch(function (error) {
+            console.log('error getAllFilesForFolder', error);
+        });
+    }
     getAllFilesForFolder = (event) => {
         event.preventDefault();
         if (sessionService.isAdmin()) {
-            adminService.adminListFiles(event.target.innerText).then(response => {
-                console.log('response all files admin', response.data.files);
-                this.setState({
-                    files: response.data.files
-                });
-                this.props.history.push("/dashboard/folder/files");
-            }).catch(function (error) {
-                console.log('error getAllFilesForFolder admin', error);
-            });
+            this.adminGetFiles(event)
         } else {
-            filesService.userFiles(event.target.innerText).then(response => {
-                console.log('response all files', response.data.files);
-                this.setState({
-                    files: response.data.files
-                });
-                this.props.history.push("/dashboard/folder/files");
-            }).catch(function (error) {
-                console.log('error getAllFilesForFolder', error);
-            });
+            this.userGetFiles(event);
         }
 
+    }
+    deleteFile(file, listFiles) {
+        console.log('This is delete File', file);
+        let fileId = file;
+        console.log('Pre ', listFiles)
+        if (sessionService.isAdmin()) {
+            adminService.adminDeleteFiles(fileId).then(response => {
+                console.log('success Delete admin ', response);
+                listFiles.map(function (el, i) {
+                    if (el._id == file) {
+                        listFiles.splice(i, 1);
+                    }
+                })
+                console.log('Posle ', listFiles)
+                this.setState({
+                    files: listFiles
+                });
+            }).catch(function (error) {
+                console.log('error Delete admin', error);
+            })
+        } else {
+                filesService.deleteFiles(fileId).then(response => {
+                    console.log('success Delete ', response);
+                    listFiles.map(function (el, i) {
+                        if (el._id == file) {
+                            listFiles.splice(i, 1);
+                        }
+                    });
+                    console.log('Posle ', listFiles)
+                    this.setState({
+                        files: listFiles
+                    });
+                }).catch(function (error) {
+                    console.log('error Delete', error);
+                })
+            
+        }
     }
 
     render() {
         const { match } = this.props;
-        console.log('match.path', match);
+
         let folders = this.state.folders;
 
         return (
@@ -77,7 +120,7 @@ export class Folders extends React.Component {
                     )}
                 </ul>
                 <Route path={`${match.path}/files`} render={() => (
-                    <Files list={this.state.files} />
+                    <Files list={this.state.files} delete={this.deleteFile} />
                 )} />
             </div>
         )
