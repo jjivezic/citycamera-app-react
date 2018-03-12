@@ -13,9 +13,12 @@ export class Users extends React.Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
+    options = {
+        autoClose: 3000,
+        hideProgressBar: true,
+    };
     getListOfUsers(){
         adminService.listUsers().then(response => {
-            console.log('List users', response.data);
             this.setState({
                 users: response.data
             });
@@ -34,10 +37,9 @@ export class Users extends React.Component {
         user.isAdmin = !user.isAdmin;  
         adminService.adminUpdateUser(user).then(response => {
             this.getListOfUsers();
-            toast.success("User is successfully updated!")
-
+            toast.success("User is successfully updated!",this.options);
          }).catch(function (error) {
-            toast.error("Error updating user!")
+            toast.error("Error updating user!",this.options)
             });
 
     }

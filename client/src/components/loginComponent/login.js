@@ -18,6 +18,10 @@ export class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
+  options = {
+        autoClose: 3000,
+        hideProgressBar: true,
+    };
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -36,10 +40,10 @@ export class Login extends React.Component {
                 if (sessionService.isAuth()) {
                     this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
-                    toast.success("User is successfully loged !")
+                    toast.success("User is successfully loged !",this.options)
                 }
             }).catch(function (error) {
-                toast.error("Error Wrong username or password!")
+                toast.error("Error Wrong username or password!",this.options)
             });
     }
 

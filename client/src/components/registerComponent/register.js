@@ -15,7 +15,10 @@ export class Register extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    options = {
+        autoClose: 3000,
+        hideProgressBar: true,
+    };
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -32,9 +35,9 @@ export class Register extends React.Component {
         userService.register(user)
             .then(response => {
                 this.props.history.push("/");
-                toast.success("Account is successfully created!")
+                toast.success("Account is successfully created!",this.options)
             }).catch(function (error) {
-               toast.error("Error creating account!")
+               toast.error("Error creating account!",this.options)
             });
     }
     validateForm() {
