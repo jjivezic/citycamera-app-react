@@ -9,7 +9,6 @@ export const userService = {
 };
 
 function login(user) {
-    console.log('http user', user)
     return axios.post(apiBaseUrl + 'user/login', user);
 }
 
@@ -18,6 +17,5 @@ function logout() {
 }
 
 function register(user) {
-    console.log('http user register', user)
     return axios.post(apiBaseUrl + 'user/register', user);
 }

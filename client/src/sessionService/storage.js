@@ -33,7 +33,6 @@ export const sessionService = {
     let data = localStorage.getItem('user');
     if (!data) return null;
     var admin = JSON.parse(data).user;
-    console.log('admin session',admin)
     return (admin) ? admin.isAdmin : "";
   },
   isAuth() {
@@ -42,7 +41,6 @@ export const sessionService = {
       return false
     } else {
       var session = JSON.parse(data);
-      console.log('session111', session.token)
       return session.token
     }
   }

@@ -16,9 +16,6 @@ export const Dashboard = () => {
                         <Link to="/dashboard/folder">Folders</Link>
                     </li>
                     <li>
-                        <Link to="/dashboard/test">Test</Link>
-                    </li>
-                    <li>
                         <Link to="/dashboard/admin">Admin Update user</Link>
                     </li>
                     <li><a href="" onClick={() => { sessionService.destroy() }} >Logout</a></li>

@@ -36,13 +36,14 @@ export class Login extends React.Component {
         };
         userService.login(user)
             .then(response => {
+                console.log('this',this)
                 sessionService.create(response.data);
                 if (sessionService.isAuth()) {
                     this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
                     toast.success("User is successfully loged !", this.options)
                 }
-            }).catch(function (error) {
+            }).catch(error => {
                 toast.error("Error Wrong username or password!", this.options)
             });
     }

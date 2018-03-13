@@ -16,7 +16,6 @@ var Auth = {
   },
   checkTokenUser: function (req, res, next) {
     // check header or url parameters or post parameters for token
-    console.log('recToken',recToken)
     var recToken = req.headers['x-access-token'];
     securityHandler.checkTokenUser(recToken, function (err) {
       if (err) {

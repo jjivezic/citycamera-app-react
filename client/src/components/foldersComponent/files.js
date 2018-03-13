@@ -1,26 +1,5 @@
 import React from 'react';
-import { sessionService } from '../../sessionService/storage';
-import { filesService,adminService } from '../../services/';
 
-
-function deleteFile(filesId) {
-    console.log('Delete function', filesId)
-    if (sessionService.isAdmin()) {
-        adminService.adminDeleteFiles(filesId).then(response => {
-            console.log('success Delete admin ', response);
-        }).catch(function (error) {
-            console.log('error Delete admin', error);
-        })
-    } else {
-        if (sessionService.isAdmin()) {
-            filesService.deleteFiles(filesId).then(response => {
-                console.log('success Delete ', response);
-            }).catch(function (error) {
-                console.log('error Delete', error);
-            })
-        }
-    }
-}
     export const Files = (props) => {
         let url = 'https://citycamera.s3.eu-central-1.amazonaws.com/'
         let listFiles = props.list;
@@ -37,5 +16,4 @@ function deleteFile(filesId) {
                 </ul>
             </div>
         )
-
     }

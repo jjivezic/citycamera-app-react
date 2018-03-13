@@ -1,6 +1,5 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-
 import { sessionService } from '../../sessionService/storage';
 import { adminService } from '../../services/index';
 
@@ -23,7 +22,7 @@ export class Users extends React.Component {
             this.setState({
                 users: response.data
             });
-        }).catch(function (error) {
+        }).catch(error => {
             console.log('error admin getListOfUsers', error);
         });
     }
@@ -39,7 +38,7 @@ export class Users extends React.Component {
         adminService.adminUpdateUser(user).then(response => {
             this.getListOfUsers();
             toast.success("User is successfully updated!",this.options);
-         }).catch(function (error) {
+         }).catch(error => {
             toast.error("Error updating user!",this.options)
             });
 

@@ -5,7 +5,7 @@ import { Login } from './components/loginComponent/login';
 import { Register } from './components/registerComponent/register';
 import { Dashboard } from './components/dashboard/dashboard';
 import { PrivateRoute } from './privateRoute/privateRoute';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 
 class App extends Component {

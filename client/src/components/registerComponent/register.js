@@ -37,7 +37,7 @@ export class Register extends React.Component {
             .then(response => {
                 this.props.history.push("/");
                 toast.success("Account is successfully created!", this.options)
-            }).catch(function (error) {
+            }).catch(error => {
                 toast.error("Error creating account!", this.options)
             });
     }

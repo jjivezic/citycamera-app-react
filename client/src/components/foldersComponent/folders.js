@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
 import { Files } from './files';
 
 export class Folders extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             folders: [],
             files: []
-        }
+        };
+        this.options = {
+            autoClose: 3000,
+            hideProgressBar: true,
+        };
         this.getAllFilesForFolder = this.getAllFilesForFolder.bind(this);
+        this.deleteFile = this.deleteFile.bind(this);
     }
     componentWillMount() {
         if (sessionService.isAdmin()) {
@@ -34,7 +40,6 @@ export class Folders extends React.Component {
     }
     adminGetFiles(event) {
         adminService.adminListFiles(event.target.innerText).then(response => {
-            console.log('response all files admin', response.data.files);
             this.setState({
                 files: response.data.files
             });
@@ -45,7 +50,6 @@ export class Folders extends React.Component {
     }
     userGetFiles(event) {
         filesService.userFiles(event.target.innerText).then(response => {
-            console.log('response all files', response.data.files);
             this.setState({
                 files: response.data.files
             });
@@ -64,46 +68,42 @@ export class Folders extends React.Component {
 
     }
     deleteFile(file, listFiles) {
-        console.log('This is delete File', file);
         let fileId = file;
-        console.log('Pre ', listFiles)
         if (sessionService.isAdmin()) {
             adminService.adminDeleteFiles(fileId).then(response => {
-                console.log('success Delete admin ', response);
-                listFiles.map(function (el, i) {
-                    if (el._id == file) {
+                listFiles.forEach(function (el, i) {
+                    if (el._id === file) {
                         listFiles.splice(i, 1);
                     }
                 })
-                console.log('Posle ', listFiles)
                 this.setState({
                     files: listFiles
                 });
-            }).catch(function (error) {
+                toast.success("File is successfully deleted!", this.options)
+            }).catch(error => {
+                toast.error("Error deleting file!", this.options)
                 console.log('error Delete admin', error);
             })
         } else {
-                filesService.deleteFiles(fileId).then(response => {
-                    console.log('success Delete ', response);
-                    listFiles.map(function (el, i) {
-                        if (el._id == file) {
-                            listFiles.splice(i, 1);
-                        }
-                    });
-                    console.log('Posle ', listFiles)
-                    this.setState({
-                        files: listFiles
-                    });
-                }).catch(function (error) {
-                    console.log('error Delete', error);
-                })
-            
+            filesService.deleteFiles(file).then(response => {
+                listFiles.forEach(function (el, i) {
+                    if (el._id === file) {
+                        listFiles.splice(i, 1);
+                    }
+                });
+                this.setState({
+                    files: listFiles
+                });
+                toast.success("File is successfully deleted!", this.options)
+            }).catch(error => {
+                toast.error("Error deleting file!", this.options)
+            })
+
         }
     }
 
     render() {
         const { match } = this.props;
-
         let folders = this.state.folders;
 
         return (
