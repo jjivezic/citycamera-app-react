@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link ,Switch} from "react-router-dom";
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 
@@ -63,7 +63,7 @@ export class Register extends React.Component {
                     </div>
                     <button className="btn btn-primary" disabled={!this.validateForm()}>Register</button>
                 </form>
-                <Link to='/'>Login</Link>
+               <Link to='/'>Login</Link>
             </div>
         );
     }
