@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link ,Switch} from "react-router-dom";
+import { Link ,withRouter} from "react-router-dom";
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 
-export class Register extends React.Component {
+ class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -70,3 +70,4 @@ export class Register extends React.Component {
 }
 
 
+export default withRouter(Register);
