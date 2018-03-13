@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { sessionService } from '../../sessionService/storage';
 import { Folders } from '../foldersComponent/folders';
-import { Test } from '../testComponent/test';
 import { Users } from '../foldersComponent/listUsers';
 
 
