@@ -22,7 +22,6 @@ export const Dashboard = () => {
             </nav>
             <Switch>
                 <Route path="/dashboard/folder" component={Folders} />
-                <Route path="/dashboard/test" component={Test} />
                 <Route path="/dashboard/admin" component={Users} />
             </Switch>
         </div>
