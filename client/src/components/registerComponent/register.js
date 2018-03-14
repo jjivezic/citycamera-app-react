@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link ,withRouter} from "react-router-dom";
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 
- class Register extends React.Component {
+ export class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -46,6 +45,7 @@ import { userService } from '../../services/user.service';
     }
     render() {
         return (
+       
             <div className="auth-page">
                 <h1>Register page</h1>
                 <form onSubmit={this.handleSubmit}>
@@ -63,11 +63,9 @@ import { userService } from '../../services/user.service';
                     </div>
                     <button className="btn btn-primary" disabled={!this.validateForm()}>Register</button>
                 </form>
-               <Link to='/'>Login</Link>
+               <a href="/">Login</a>
             </div>
+        
         );
     }
 }
-
-
-export default withRouter(Register);

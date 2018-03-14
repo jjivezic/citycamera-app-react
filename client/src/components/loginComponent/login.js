@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export class Login extends React.Component {
 
@@ -81,7 +81,7 @@ export class Login extends React.Component {
                     <button className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
                 </form>
                 <br />
-                <Link to='/register'>Register</Link>
+                <a href="/register">Register</a>
                 </div>
             </div>
         );

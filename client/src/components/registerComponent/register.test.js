@@ -2,8 +2,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import {expect} from 'chai';
+import {MemoryRouter} from 'react-router'
 
-import Register from './register';
+import {Register} from './register';
 
 describe('<Register />', () =>{
  

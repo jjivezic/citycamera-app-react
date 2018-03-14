@@ -1,10 +1,4 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
-// import App from './App';
 
-// it('renders without crashing', () => {
-//   shallow(<App />);
-// });
 import React from 'react';
 import {expect} from 'chai';
 import { mount,shallow } from 'enzyme';
