@@ -25,5 +25,5 @@ class App extends Component {
     );
   }
 }
-
+//https://www.sitepoint.com/react-router-v4-complete-guide/ Protected routes
 export default App

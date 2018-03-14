@@ -51,15 +51,15 @@ import { userService } from '../../services/user.service';
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>  Username:</label>
-                        <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <input id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label>  Email:</label>
-                        <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <input id ="email" className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Password:</label>
-                        <input className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input id ="password" className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
                     <button className="btn btn-primary" disabled={!this.validateForm()}>Register</button>
                 </form>

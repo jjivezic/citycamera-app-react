@@ -12,7 +12,8 @@ export class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            redirectToReferrer: false
+            redirectToReferrer: false,
+            submitted: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,6 +31,7 @@ export class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        this.setState({ submitted: true });
         const user = {
             username: this.state.username,
             password: this.state.password
@@ -54,14 +56,14 @@ export class Login extends React.Component {
 
     render() {
 
-        const { from } = this.props.location.state || { from: { pathname: '/' } }
-        const { redirectToReferrer } = this.state;
+     //  const { from } = { from: { pathname: '/' } }
+      //  const { redirectToReferrer } = this.state;
 
-        console.log('redirectToReferrer', redirectToReferrer, this.state)
-
-        if (redirectToReferrer) {
+    //  console.log('redirectToReferrer', this.props);
+     // console.log('this.state', this.state);
+        if (this.redirectToReferrer) {
             return (
-                <Redirect to={from} />
+                <Redirect to='/' />
             )
         }
         return (
@@ -71,14 +73,14 @@ export class Login extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>  Username:</label>
-                        <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <input  id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
 
                     </div>
                     <div className="form-group">
                         <label>  Password:</label>
-                        <input className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input  id='password' className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
-                    <button className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
+                    <button type="submit" className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
                 </form>
                 <br />
                 <a href="/register">Register</a>
