@@ -6,14 +6,11 @@
     "a": "^2.1.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "jquery": "^3.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "react-test-renderer": "^16.2.0",
     "react-toastify": "^3.4.1"
   },
   "scripts": {
@@ -23,5 +20,11 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001",
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "react-test-renderer": "^16.2.0",
+    "sinon": "^4.4.4"
+  }
 }
