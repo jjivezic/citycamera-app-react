@@ -38,9 +38,10 @@ export class Login extends React.Component {
         };
         userService.login(user)
             .then(response => {
-                console.log('this',this)
-                sessionService.create(response.data);
+               // console.log('this',this)
+               sessionService.create(response.data);
                 if (sessionService.isAuth()) {
+             
                     this.setState({ redirectToReferrer: true })
                     this.props.history.push("/dashboard");
                     toast.success("User is successfully loged !", this.options)

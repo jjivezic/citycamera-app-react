@@ -57,7 +57,6 @@ describe('Username input', () => {
     })
 })
 describe('Email input', () => {
-
     it('should respond to change event and change the state of the Register Component', () => {
         const wrapper = shallow(<Register />);
         wrapper.find('#email').simulate('change', { target: { name: 'email', value: 'blah@gmail.com' } });

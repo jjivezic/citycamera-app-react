@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, HashRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
@@ -9,61 +9,39 @@ export class Folders extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            folders: [],
+            folders: props.folders,
             files: []
         };
         this.options = {
             autoClose: 3000,
             hideProgressBar: true,
         };
-        this.getAllFilesForFolder = this.getAllFilesForFolder.bind(this);
         this.deleteFile = this.deleteFile.bind(this);
     }
-    componentWillMount() {
-        if (sessionService.isAdmin()) {
-            adminService.adminListFolders().then(response => {
-                this.setState({
-                    folders: response.data.folders
-                });
-            }).catch(function (error) {
-                console.log('error filesService admin', error);
-            });
-        } else {
-            filesService.userFolders().then(response => {
-                this.setState({
-                    folders: response.data.folders
-                });
-            }).catch(function (error) {
-                console.log('error filesService ', error);
-            });
-        }
-    }
-    adminGetFiles(event) {
-        adminService.adminListFiles(event.target.innerText).then(response => {
+
+    adminGetFiles(folder) {
+        adminService.adminListFiles(folder).then(response => {
             this.setState({
                 files: response.data.files
             });
-            this.props.history.push("/dashboard/folder/files");
         }).catch(function (error) {
             console.log('error getAllFilesForFolder admin', error);
         });
     }
-    userGetFiles(event) {
-        filesService.userFiles(event.target.innerText).then(response => {
+    userGetFiles(folder) {
+        filesService.userFiles(folder).then(response => {
             this.setState({
                 files: response.data.files
             });
-            this.props.history.push("/dashboard/folder/files");
         }).catch(function (error) {
             console.log('error getAllFilesForFolder', error);
         });
     }
-    getAllFilesForFolder = (event) => {
-        event.preventDefault();
+    getAllFilesForFolder = (folder) => {
         if (sessionService.isAdmin()) {
-            this.adminGetFiles(event)
+            this.adminGetFiles(folder)
         } else {
-            this.userGetFiles(event);
+            this.userGetFiles(folder);
         }
 
     }
@@ -81,7 +59,6 @@ export class Folders extends React.Component {
                 });
                 toast.success("File is successfully deleted!", this.options)
             }).catch(error => {
-                toast.error("Error deleting file!", this.options)
                 console.log('error Delete admin', error);
             })
         } else {
@@ -94,7 +71,10 @@ export class Folders extends React.Component {
                 this.setState({
                     files: listFiles
                 });
-                toast.success("File is successfully deleted!", this.options)
+                toast.success("File is successfully deleted!", this.options);
+                if (response.data && response.data.success === true) {
+                    console.log('its success')
+                }
             }).catch(error => {
                 toast.error("Error deleting file!", this.options)
             })
@@ -103,25 +83,21 @@ export class Folders extends React.Component {
     }
 
     render() {
-        const { match } = this.props;
-        let folders = this.state.folders;
+        let folders = this.props.folders;
 
         return (
-            <div>
+            <div className="folders-page">
                 <h1>Folders</h1>
                 <ul>
                     {folders.map((folder, i) =>
                         <li key={i}>
-                            <Link to={`/dashboard/folder/${folder}`}
-                                key={'folder-' + folder}
-                                onClick={this.getAllFilesForFolder} >{folder}
-                            </Link>
-                        </li>
+                       <a href="#" id= {folder} className="folder-link" key={i} onClick={this.getAllFilesForFolder.bind(this, folder)} >
+                        {folder}</a>  </li>
                     )}
                 </ul>
-                <Route path={`${match.path}/files`} render={() => (
+                {this.state.files && this.state.files.length > 0 ?
                     <Files list={this.state.files} delete={this.deleteFile} />
-                )} />
+                 : null}
             </div>
         )
     }
