@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route, HashRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
@@ -91,7 +90,7 @@ export class Folders extends React.Component {
                 <ul>
                     {folders.map((folder, i) =>
                         <li key={i}>
-                       <a href="#" id= {folder} className="folder-link" key={i} onClick={this.getAllFilesForFolder.bind(this, folder)} >
+                       <a href="#/dashboard/folder/files" id= {folder} className="folder-link" key={i} onClick={this.getAllFilesForFolder.bind(this, folder)} >
                         {folder}</a>  </li>
                     )}
                 </ul>

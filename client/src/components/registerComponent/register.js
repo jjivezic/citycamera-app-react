@@ -63,7 +63,7 @@ import { userService } from '../../services/user.service';
                     </div>
                     <button className="btn btn-primary" disabled={!this.validateForm()}>Register</button>
                 </form>
-               <a href="/">Login</a>
+               <a href="/#">Login</a>
             </div>
         
         );

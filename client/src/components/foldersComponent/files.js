@@ -4,7 +4,8 @@ import React from 'react';
         let url = 'https://citycamera.s3.eu-central-1.amazonaws.com/'
         let listFiles = props.list;
         return (
-            <div> 
+           listFiles ?
+            (<div> 
                 <h3>LIST FILES</h3>
                 <ul>
                     {listFiles.map((file, i) =>
@@ -16,5 +17,5 @@ import React from 'react';
                     )}
                 </ul>
             </div>
-        )
+        ) : null)
     }

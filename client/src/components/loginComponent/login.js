@@ -84,7 +84,7 @@ export class Login extends React.Component {
                     <button type="submit" className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
                 </form>
                 <br />
-                <a href="/register">Register</a>
+                <a href="/#register">Register</a>
                 </div>
             </div>
         );

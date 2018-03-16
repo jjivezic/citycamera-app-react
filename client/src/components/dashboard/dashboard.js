@@ -8,14 +8,14 @@ import { Users } from '../foldersComponent/listUsers';
 
 export class Dashboard extends React.Component {
 
-constructor(props){
-    super(props);
-    this.state = {
-        folders : []
+    constructor(props) {
+        super(props);
+        this.state = {
+            folders: []
+        }
+      
     }
-}
-
-    componentWillMount(){
+    getFolders() {
         if (sessionService.isAdmin()) {
             adminService.adminListFolders().then(response => {
                 this.setState({
@@ -34,11 +34,17 @@ constructor(props){
             });
         }
     }
+    componentDidMount() {
+        this.getFolders();
+    }
 
-    render(){
+    render() {
+        console.log('Render', this.state.folders);
+    
         return (
-
+           
             <div>
+
                 <nav className="">
                     <ul className="">
                         <li>
@@ -48,13 +54,15 @@ constructor(props){
                             <Link to="/dashboard/admin">Admin Update user</Link>
                         </li>
                         <li><a href="" onClick={() => { sessionService.destroy() }} >Logout</a></li>
+
                     </ul>
                 </nav>
                 <Switch>
-                    <Route path="/dashboard/folder" render={()=><Folders folders={this.state.folders} />}/>
+                    <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} />} />
                     <Route path="/dashboard/admin" component={Users} />
                 </Switch>
             </div>
+        
         )
     }
 }
