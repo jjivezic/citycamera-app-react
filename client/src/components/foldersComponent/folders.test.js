@@ -3,9 +3,9 @@ import { mount, shallow, render } from 'enzyme';
 import { expect, assert } from 'chai';
 import { MemoryRouter as Router } from 'react-router-dom';//or MemoryRouter
 
-import { Folders } from './folders';
-import { Files } from './files';
-import { Dashboard } from '../dashboard/dashboard';
+import Folders from './folders';
+import Files from './files';
+import Dashboard from '../dashboard/dashboard';
 import sinon from 'sinon';
 import axios from 'axios';
 

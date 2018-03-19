@@ -101,3 +101,13 @@ exports.updateUser = function (req, res, next) {
     return next(err);
   });
 }
+exports.getUserById = function (req, res, next) {
+  var userId = req.params.user_id;
+  storage.getUserById(userId).then(function (user) {
+    res.status(200);    
+    res.json(user);
+  }).fail(function (err) {
+    logger.error('ERROR CTRL - users by id ', err);
+    return next(err);
+  });
+}

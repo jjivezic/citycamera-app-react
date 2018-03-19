@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/loginComponent/login';
-import  Register   from './components/registerComponent/register';
-import { Dashboard } from './components/dashboard/dashboard';
+import Register from './components/registerComponent/register';
+import Dashboard from './components/dashboard/dashboard';
 import { PrivateRoute } from './privateRoute/privateRoute';
 import { ToastContainer } from 'react-toastify';
 import PageNotFound from './components/pageNotFound/pageNotFound';
@@ -18,8 +18,6 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/register" component={Register} />
-          {/* <Route path="/dashboard" component={Dashboard} /> */}
-          {/* <Route path="/:id" render = {()=> (<p> I want this text to show up for all routes other than '/dashboard', '/register' and '/register' </p>)}/> */}
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <Route component={PageNotFound} />
         </Switch>

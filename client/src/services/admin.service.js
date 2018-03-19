@@ -30,3 +30,6 @@ function  adminListFiles(folder) {
 function  adminUpdateUser(user) {
     return axios.put(apiBaseUrl + 'user/'+user._id ,{isAdmin:user.isAdmin}, { headers: {"x-access-token": sessionService.getSessionToken() } });
 }
+function  adminGetUserById(user) {
+    return axios.get(apiBaseUrl + 'user/'+user._id , { headers: {"x-access-token": sessionService.getSessionToken() } });
+}

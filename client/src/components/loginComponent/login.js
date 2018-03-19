@@ -7,7 +7,6 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             username: '',
             password: '',
@@ -77,4 +76,5 @@ class Login extends React.Component {
         );
     }
 }
+
 export default Login;

@@ -2,9 +2,9 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
-import { Files } from './files';
+import Files from './files';
 
-export class Folders extends React.Component {
+ class Folders extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -101,3 +101,4 @@ export class Folders extends React.Component {
         )
     }
 }
+export default Folders;

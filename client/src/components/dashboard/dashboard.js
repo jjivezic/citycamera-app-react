@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
-import { Folders } from '../foldersComponent/folders';
-import { Users } from '../foldersComponent/listUsers';
+import  Folders  from '../foldersComponent/folders';
+import  Users from '../usersComponent/listUsers';
 import PageNotFound from '../pageNotFound/pageNotFound';
 
-export class Dashboard extends React.Component {
+class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
@@ -39,8 +39,7 @@ export class Dashboard extends React.Component {
     }
 
     render() {
-        console.log('Render', this.state.folders);
-    
+
         return (
            
             <div>
@@ -69,3 +68,5 @@ export class Dashboard extends React.Component {
         )
     }
 }
+
+export default Dashboard;

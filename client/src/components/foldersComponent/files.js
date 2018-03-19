@@ -1,6 +1,6 @@
 import React from 'react';
-
     export const Files = (props) => {
+        console.log('props',props)
         let url = 'https://citycamera.s3.eu-central-1.amazonaws.com/'
         let listFiles = props.list;
         return (
@@ -19,3 +19,5 @@ import React from 'react';
             </div>
         ) : null)
     }
+
+    export default Files;
