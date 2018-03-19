@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
 import { Folders } from '../foldersComponent/folders';
 import { Users } from '../foldersComponent/listUsers';
-
+import PageNotFound from '../pageNotFound/pageNotFound';
 
 export class Dashboard extends React.Component {
 
@@ -47,12 +47,14 @@ export class Dashboard extends React.Component {
 
                 <nav className="">
                     <ul className="">
+        
                         <li>
-                            <Link to="/dashboard/folder">Folders</Link>
+                            <NavLink activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
                         </li>
                         <li>
-                            <Link to="/dashboard/admin">Admin Update user</Link>
+                            <NavLink activeClassName='activeNavLink'  to="/dashboard/admin">Admin Update user</NavLink>
                         </li>
+                     
                         <li><a href="" onClick={() => { sessionService.destroy() }} >Logout</a></li>
 
                     </ul>
@@ -60,6 +62,7 @@ export class Dashboard extends React.Component {
                 <Switch>
                     <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} />} />
                     <Route path="/dashboard/admin" component={Users} />
+                    <Route component={PageNotFound} />
                 </Switch>
             </div>
         

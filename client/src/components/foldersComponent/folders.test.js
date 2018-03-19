@@ -32,12 +32,12 @@ let folders = {
 mockAxios.onGet('http://localhost:3000/file/folders/null').reply(200, folders);
 describe('<Folders />', () => {
     it('On click show files', () => {
-
         const wrapper = mount(<Folders folders={['folder1', 'folder2']} />);
         expect(wrapper.find('.folder-link')).to.have.length(2);
         wrapper.find('#folder1').simulate('click');
         setImmediate(() => {
             wrapper.update();
+            expect(wrapper.find(Files).length).to.equal(1); 
             expect(wrapper.find('.file-preview')).to.have.length(3);
         });
 

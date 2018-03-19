@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 import axios from 'axios';
 import sinon from 'sinon';
-import { Register } from './register';
+import Register from './register';
 import faker from 'faker';
 //local storadge mock
 var MockBrowser = require('mock-browser').mocks.MockBrowser;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import { Login } from './login';
+import Login from './login';
 import axios from 'axios';
 import sinon from 'sinon';
 //local storadge mock
@@ -30,6 +30,8 @@ mockAxios.onPost('http://localhost:3000/user/login', { username: 'jelena', passw
 describe('<Login />', () => {
 
     it('should render <Login /> without throwing an error', () => {
+        let wrapper = mount(<Login />);
+        expect(wrapper.find(Login).render().find('form')).to.have.length(1);
  })
   
     it('renders a username input', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 
- export class Register extends React.Component {
+ class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -69,3 +69,5 @@ import { userService } from '../../services/user.service';
         );
     }
 }
+
+export default Register;

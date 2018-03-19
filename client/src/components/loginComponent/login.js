@@ -2,9 +2,8 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
-import { Redirect } from 'react-router-dom';
 
-export class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,8 +11,8 @@ export class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            redirectToReferrer: false,
-            submitted: false
+            redirectToDashboard: false,
+            submitted: false,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,14 +37,12 @@ export class Login extends React.Component {
         };
         userService.login(user)
             .then(response => {
-               // console.log('this',this)
                sessionService.create(response.data);
-                if (sessionService.isAuth()) {
-             
-                    this.setState({ redirectToReferrer: true })
-                    this.props.history.push("/dashboard");
-                    toast.success("User is successfully loged !", this.options)
-                }
+               if (sessionService.isAuth()) {
+                   this.setState({ redirectToDashboard: true })
+                   this.props.history.push("/dashboard/folder");
+                   toast.success("User is successfully loged !", this.options)
+               }
             }).catch(error => {
                 toast.error("Error Wrong username or password!", this.options)
             });
@@ -57,16 +54,6 @@ export class Login extends React.Component {
 
     render() {
 
-     //  const { from } = { from: { pathname: '/' } }
-      //  const { redirectToReferrer } = this.state;
-
-    //  console.log('redirectToReferrer', this.props);
-     // console.log('this.state', this.state);
-        if (this.redirectToReferrer) {
-            return (
-                <Redirect to='/' />
-            )
-        }
         return (
             <div className="container">
             <div className="auth-page">
@@ -90,3 +77,4 @@ export class Login extends React.Component {
         );
     }
 }
+export default Login;
