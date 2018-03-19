@@ -5,6 +5,8 @@ Synopsis
 This is a simple file managing server for CityCamera application
 
 # Installation
+Install nodeJS and MongoDB
+
 Create folders in projects root: `log`, `doc`
 To install the application run:
 ```sh
