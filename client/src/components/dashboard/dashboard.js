@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
                             <NavLink activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
                         </li>
                         <li>
-                            <NavLink activeClassName='activeNavLink'  to="/dashboard/admin">Admin Update user</NavLink>
+                            <NavLink activeClassName='activeNavLink'  to="/dashboard/user">Admin Update user</NavLink>
                         </li>
                      
                         <li><a href="" onClick={() => { sessionService.destroy() }} >Logout</a></li>
@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
                 </nav>
                 <Switch>
                     <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} />} />
-                    <Route path="/dashboard/admin" component={Users} />
+                    <Route path="/dashboard/user" component={Users} />
                     <Route component={PageNotFound} />
                 </Switch>
             </div>
