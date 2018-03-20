@@ -47,8 +47,8 @@ class Users extends React.Component {
     }
     render() {
         let users = this.state.users;
-console.log('user route',this.props);
-let url=this.props.match.url;
+        //let url=this.props.match.url;
+
         return (
             <div>
                 <h1>List users</h1>

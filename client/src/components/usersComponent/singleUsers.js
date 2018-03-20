@@ -30,6 +30,7 @@ class UserPreview extends React.Component {
         let userId = this.props.match.params.userId;
         this.getUserById(userId);
     }
+    
     render() {
         let user = this.state.user;
         return (
