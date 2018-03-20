@@ -1,5 +1,6 @@
 import React from 'react';
 import { adminService } from '../../services/index';
+import { Link} from 'react-router-dom';
 
 class UserPreview extends React.Component {
     constructor(props) {
@@ -33,6 +34,10 @@ class UserPreview extends React.Component {
         let user = this.state.user;
         return (
             <div>
+                <hr />
+                <h5>User details</h5>
+                <Link to={"/dashboard/users"}>Back to list</Link>
+          
                 <hr />
                 <h1>{user.username}</h1>
                 <h5>{user.email}</h5>

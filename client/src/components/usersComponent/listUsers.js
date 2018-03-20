@@ -27,13 +27,6 @@ class Users extends React.Component {
             console.log('error admin getListOfUsers', error);
         });
     }
-    // componentDidMount() {
-    //     console.log('xxxx',this.props)
-
-    //     //    this.getListOfUsers(this.props.match);
-      
-
-    // }
     componentDidMount() {
         if (sessionService.isAdmin()) {
             this.getListOfUsers();
@@ -54,7 +47,8 @@ class Users extends React.Component {
     }
     render() {
         let users = this.state.users;
-
+console.log('user route',this.props);
+let url=this.props.match.url;
         return (
             <div>
                 <h1>List users</h1>
@@ -67,12 +61,7 @@ class Users extends React.Component {
                                 onChange={() => this.handleInputChange(user)} />
                         </li>
                     )}
-    
                 </ul>
-                <Switch>
-                <Route path="/dashboard/user/:userId" exact component={UserPreview} />
-               </Switch>
-
             </div>
         )
     }

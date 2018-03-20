@@ -5,7 +5,7 @@ import { filesService, adminService } from '../../services/';
 import  Folders  from '../foldersComponent/folders';
 import  Users from '../usersComponent/listUsers';
 import PageNotFound from '../pageNotFound/pageNotFound';
-
+import UserPreview from '../usersComponent/singleUsers'
 class Dashboard extends React.Component {
 
     constructor(props) {
@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-
+console.log('props',this.props)
         return (
            
             <div>
@@ -51,16 +51,16 @@ class Dashboard extends React.Component {
                             <NavLink activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
                         </li>
                         <li>
-                            <NavLink activeClassName='activeNavLink'  to="/dashboard/user">Admin Update user</NavLink>
+                            <NavLink activeClassName='activeNavLink'  to="/dashboard/users">Admin Update user</NavLink>
                         </li>
-                     
                         <li><a href="" onClick={() => { sessionService.destroy() }} >Logout</a></li>
 
                     </ul>
                 </nav>
                 <Switch>
                     <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} />} />
-                    <Route path="/dashboard/user" component={Users} />
+                    <Route path="/dashboard/users" component={Users} />
+                    <Route path="/dashboard/user/:userId"  component={UserPreview}  />
                     <Route component={PageNotFound} />
                 </Switch>
             </div>
