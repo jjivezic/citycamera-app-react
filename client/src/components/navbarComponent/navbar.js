@@ -15,15 +15,20 @@ class Navbar extends React.Component {
             isAutentificated: false
         }
     }
+    componentDidMount() {
+        this.isAdmin();
+    }
 
     componentWillReceiveProps() {
+        this.isAdmin();
+    }
+    isAdmin() {
         if (sessionService.isAuth()) {
             this.setState({ isAutentificated: true });
         } else {
             this.setState({ isAutentificated: false });
         }
     }
-
     render() {
         const isAutentificated = this.state.isAutentificated;
         return (

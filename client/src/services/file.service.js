@@ -6,7 +6,8 @@ export const filesService = {
     userFolders,
     userFiles,
     deleteFiles,
-    getUploadLink
+    getUploadLink,
+    uploadImageAmazon
 };
     
 //let token = sessionService.getSessionToken();
@@ -24,4 +25,8 @@ function  deleteFiles(fileId) {
 function  getUploadLink(fileData) {
     console.log('File HTTP',fileData)
     return axios.post(apiBaseUrl + 'file/'+ sessionService.getUserId()+ '/getUploadURL',fileData, { headers: {"x-access-token": sessionService.getSessionToken() } });
+}
+function uploadImageAmazon(presignedUrl, body) {
+console.log('amazonupload HTTP', presignedUrl, body)
+    return axios.put(presignedUrl, body)
 }
