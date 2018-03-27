@@ -29,28 +29,20 @@ mockAxios.onPost('http://localhost:3000/user/register', testUser).reply(200, dat
 describe('<Register />', () => {
     // make our assertion and what we expect to happen 
     it('should render without throwing an error', () => {
-
+        let wrapper = mount(<Register />);
+        expect(wrapper.find(Register).render().find('form')).to.have.length(1);
     })
-    it('renders a username input', () => {
-        expect(shallow(<Register />).find('#username').length).to.equal(1)
-    })
-    it('renders a email input', () => {
-        expect(shallow(<Register />).find('#email').length).to.equal(1)
-    })
-    it('renders a password input', () => {
+    it('renders a username,password and email input', () => {
+        expect(shallow(<Register />).find('#username').length).to.equal(1);
+        expect(shallow(<Register />).find('#email').length).to.equal(1);
         expect(shallow(<Register />).find('#password').length).to.equal(1)
     })
-    it('should have an initial username state', () => {
+ 
+    it('should have an initial username,password and email state', () => {
         let wrapper = mount(<Register />);
         expect(wrapper.state().username).to.equal('');
-    });
-    it('should have an initial password state', () => {
-        let wrapper = mount(<Register />);
+        expect(wrapper.state().email).to.equal('');   
         expect(wrapper.state().password).to.equal('');
-    });
-    it('should have an initial email state', () => {
-        let wrapper = mount(<Register />);
-        expect(wrapper.state().email).to.equal('');
     });
 
     it('should update state on click', function () {
@@ -66,7 +58,7 @@ describe('<Register />', () => {
         //  console.log('this state',wrapper.instance())
     });
 
-    it('Test register api on submit ', function () {
+    it('test register API on submit ', function () {
         const wrapper = mount(<Register />);
         wrapper.setState({ username: 'jelena', password: '1234', email: 'email@yahoo.com' });
         wrapper.find('form').simulate('submit');
@@ -77,7 +69,6 @@ describe('<Register />', () => {
     })
 })
     describe('Username input', () => {
-
         it('should respond to change event and change the state of the Register Component', () => {
             const username = faker.name.findName();
             const wrapper = shallow(<Register />);

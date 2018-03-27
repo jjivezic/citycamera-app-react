@@ -10,9 +10,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
           sessionService.isAuth() !== false ? (
             <Component {...props} />
           ) : (
-            <Redirect
-              to="/"
-            />
+            <Redirect to="/" />
           )}
       />
     );

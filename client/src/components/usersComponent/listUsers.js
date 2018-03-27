@@ -2,8 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { sessionService } from '../../sessionService/storage';
 import { adminService } from '../../services/index';
-import { Link, Route, Switch } from 'react-router-dom';
-import UserPreview from '../usersComponent/singleUsers';
+import { Link } from 'react-router-dom';
 
 class Users extends React.Component {
     constructor(props) {
@@ -35,7 +34,6 @@ class Users extends React.Component {
     }
 
     handleInputChange(user) {
-
         user.isAdmin = !user.isAdmin;
         adminService.adminUpdateUser(user).then(response => {
             this.getListOfUsers();

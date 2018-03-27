@@ -5,15 +5,17 @@ import { filesService, adminService } from '../../services/';
 import  Folders  from '../foldersComponent/folders';
 import  Users from '../usersComponent/listUsers';
 import PageNotFound from '../pageNotFound/pageNotFound';
-import UserPreview from '../usersComponent/singleUsers'
+import UserPreview from '../usersComponent/singleUsers';
+import  Upload from '../uploadComponent/upload';
 class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            folders: []
+            folders: [],
+            isAdmin:false
         }
-      
+        this.isAdmin = this.isAdmin.bind(this);
     }
     getFolders() {
         if (sessionService.isAdmin()) {
@@ -38,29 +40,32 @@ class Dashboard extends React.Component {
         this.getFolders();
     }
 
+    isAdmin(){
+       return sessionService.isAdmin();
+    }
     render() {
-console.log('props',this.props)
         return (
-           
             <div>
-
                 <nav className="">
                     <ul className="">
-        
                         <li>
                             <NavLink activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
                         </li>
+                        {this.isAdmin()  ?
                         <li>
                             <NavLink activeClassName='activeNavLink'  to="/dashboard/users">Admin Update user</NavLink>
                         </li>
-                        <li><a href="" onClick={() => { sessionService.destroy() }} >Logout</a></li>
-
+                       : null}
+                        <li>
+                            <NavLink activeClassName='activeNavLink'  to="/dashboard/upload">Upload image</NavLink>
+                        </li> 
                     </ul>
                 </nav>
                 <Switch>
                     <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} />} />
                     <Route path="/dashboard/users" component={Users} />
                     <Route path="/dashboard/user/:userId"  component={UserPreview}  />
+                    <Route path="/dashboard/upload" component={Upload} />
                     <Route component={PageNotFound} />
                 </Switch>
             </div>

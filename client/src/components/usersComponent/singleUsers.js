@@ -38,7 +38,6 @@ class UserPreview extends React.Component {
                 <hr />
                 <h5>User details</h5>
                 <Link to={"/dashboard/users"}>Back to list</Link>
-          
                 <hr />
                 <h1>{user.username}</h1>
                 <h5>{user.email}</h5>

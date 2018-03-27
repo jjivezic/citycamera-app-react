@@ -38,7 +38,7 @@ export const sessionService = {
   isAuth() {
     let data = localStorage.getItem('user');
     if (!data) {
-      return false
+      return false;
     } else {
       var session = JSON.parse(data);
       return session.token

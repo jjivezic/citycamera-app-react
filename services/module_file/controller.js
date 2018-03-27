@@ -32,7 +32,7 @@ exports.getUploadURL = function (req, res, next) {
   var fileName = req.body.file;
   var fileExt = req.body.ext;
   var userId = req.params.userId;
-
+  console.log('url',fileName,fileExt)
   provider.getUploadURL(userId, fileName, fileExt).then(function (url) {
     res.status(200);
     res.json(url);

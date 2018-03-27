@@ -8,9 +8,11 @@
     "bootstrap": "^4.0.0",
     "jquery": "^3.3.1",
     "mock-browser": "^0.92.14",
+    "popper.js": "^1.14.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-file-reader-input": "^1.1.4",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-toastify": "^3.4.1"

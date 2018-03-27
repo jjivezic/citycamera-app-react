@@ -2,10 +2,9 @@ import React from 'react';
 import { mount, shallow, render } from 'enzyme';
 import { expect, assert } from 'chai';
 import { MemoryRouter as Router } from 'react-router-dom';//or MemoryRouter
-
 import Folders from './folders';
 import Files from './files';
-import Dashboard from '../dashboard/dashboard';
+import Dashboard from '../dashboardComponent/dashboard';
 import sinon from 'sinon';
 import axios from 'axios';
 
@@ -18,6 +17,7 @@ global.localStorage = mock.getLocalStorage();
 var MockAdapter = require('axios-mock-adapter');
 var mockAxios = new MockAdapter(axios);
 
+//get Files
 let files = {
     files: [
         { _id: 1, fileName: 'file_1', ext: "jpg" },
@@ -26,10 +26,14 @@ let files = {
     ]
 }
 mockAxios.onGet('http://localhost:3000/file/null/folder1/files').reply(200,files);
+
+//get Folders
 let folders = {
     folders: ['2018-01-28', '2018-02-28']
 }
+
 mockAxios.onGet('http://localhost:3000/file/folders/null').reply(200, folders);
+
 describe('<Folders />', () => {
     it('On click show files', () => {
         const wrapper = mount(<Folders folders={['folder1', 'folder2']} />);
@@ -70,9 +74,9 @@ describe('<Dashboard />', () => {
     it('check props for files', () => {
     const wrapper = mount(<Files  listFiles={files.files}/>);
     setImmediate(() => {
-        wrapper.update();
+       // wrapper.update();
         expect((wrapper.props().listFiles).length).to.equal(3);
     });
-        console.log('len',wrapper.getElement());//for statelass component insted on instance()
+    //    console.log('len',wrapper.getElement());//for statelass component insted on instance()
     });
 })
