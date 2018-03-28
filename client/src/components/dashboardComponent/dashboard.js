@@ -50,11 +50,11 @@ class Dashboard extends React.Component {
                         </li>
                         {this.isAdmin() ?
                             <li>
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users">Admin Update user</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users " exact>Admin Update user</NavLink>
                             </li>
                             : null}
                         <li>
-                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/upload">Upload image</NavLink>
+                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/upload" exact>Upload image</NavLink>
                         </li>
                     </ul>
                 </nav>
