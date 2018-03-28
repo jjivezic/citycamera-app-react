@@ -4,7 +4,7 @@ import { sessionService } from '../../sessionService/storage';
 import { filesService, adminService } from '../../services/';
 import Files from './files';
 
- class Folders extends React.Component {
+class Folders extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,6 +16,11 @@ import Files from './files';
             hideProgressBar: true,
         };
         this.deleteFile = this.deleteFile.bind(this);
+        console.log('PROPS',props)
+    }
+    refreshFolderAfterDeleteFile = () => {
+        console.log('PROPS',this.props)
+        this.props.callbackFromParent(this.state.folders);
     }
 
     getAllFilesForFolder = (folder) => {
@@ -29,24 +34,21 @@ import Files from './files';
 
     }
     deleteFile(file, listFiles) {
-        console.log('file',file)
-        let fileId = file;
-            filesService.deleteFiles(file).then(response => {
-                listFiles.forEach(function (el, i) {
-                    if (el._id === file) {
-                        listFiles.splice(i, 1);
-                    }
-                });
-                this.setState({
-                    files: listFiles
-                });
-                toast.success("File is successfully deleted!", this.options);
-                if (response.data && response.data.success === true) {
-                    console.log('its success')
+        console.log('file', file)
+        filesService.deleteFiles(file).then(response => {
+            listFiles.forEach(function (el, i) {
+                if (el._id === file) {
+                    listFiles.splice(i, 1);
                 }
-            }).catch(error => {
-                toast.error("Error deleting file!", this.options)
-            })
+            });
+            this.setState({
+                files: listFiles
+            });
+            toast.success("File is successfully deleted!", this.options);
+            this.refreshFolderAfterDeleteFile();
+        }).catch(error => {
+            toast.error("Error deleting file!", this.options)
+        })
     }
 
     render() {
@@ -58,13 +60,13 @@ import Files from './files';
                 <ul>
                     {folders.map((folder, i) =>
                         <li key={i}>
-                       <a href="#/dashboard/folder/files" id= {folder} className="folder-link" key={i} onClick={this.getAllFilesForFolder.bind(this, folder)} >
-                        {folder}</a>  </li>
+                            <a href="#/dashboard/folder/files" id={folder} className="folder-link" key={i} onClick={this.getAllFilesForFolder.bind(this, folder)} >
+                                {folder}</a>  </li>
                     )}
                 </ul>
                 {this.state.files && this.state.files.length > 0 ?
                     <Files list={this.state.files} delete={this.deleteFile} />
-                 : null}
+                    : null}
             </div>
         )
     }

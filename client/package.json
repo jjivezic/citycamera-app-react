@@ -11,6 +11,7 @@
     "mock-browser": "^0.92.14",
     "popper.js": "^1.14.1",
     "prop-types": "^15.6.1",
+    "rc-progress": "^2.2.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-file-reader-input": "^1.1.4",
