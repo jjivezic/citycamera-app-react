@@ -65,13 +65,13 @@ class Upload extends React.Component {
         return (
             <div>
                 <form>
-                    <label htmlFor="my-file-input">Upload a File:</label>
                     <FileReaderInput as="binary" id="my-file-input"
                         onChange={this.handleChange}>
-                        <button><i className="fa fa-folder"></i></button>
+                        <div>Upload a File:   <button><i className="fa fa-folder"></i></button></div>
                         {file.name}
                     </FileReaderInput>
                 </form>
+                <br/>
                 <button className="btn btn-primary" onClick={this.handleUpload}>Upload to amazon! </button>
             </div>
         )

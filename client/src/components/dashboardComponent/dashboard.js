@@ -18,15 +18,6 @@ class Dashboard extends React.Component {
         this.isAdmin = this.isAdmin.bind(this);
     }
     getFolders() {
-        // if (sessionService.isAdmin()) {
-        //     adminService.adminListFolders().then(response => {
-        //         this.setState({
-        //             folders: response.data.folders
-        //         });
-        //     }).catch(function (error) {
-        //         console.log('error filesService admin', error);
-        //     });
-        // } else {
             filesService.userFolders().then(response => {
                 this.setState({
                     folders: response.data.folders
@@ -34,7 +25,6 @@ class Dashboard extends React.Component {
             }).catch(function (error) {
                 console.log('error filesService ', error);
             });
-      //}
     }
     componentDidMount() {
         this.getFolders();

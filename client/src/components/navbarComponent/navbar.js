@@ -41,21 +41,21 @@ class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             {!isAutentificated ? <li className="nav-item ">
-                                <NavLink activeclassname='activeNavLink' to="/login" exact>Login</NavLink>
+                                <NavLink className="nav-link"  activeclassname='activeNavLink' to="/login" exact>Login</NavLink>
                             </li> : null}
                             {!isAutentificated ? <li className="nav-item">
-                                <NavLink activeclassname='activeNavLink' to="/register">Register</NavLink>
+                                <NavLink  className="nav-link"  activeclassname='activeNavLink' to="/register">Register</NavLink>
                             </li> : null}
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <NavLink  activeclassname='activeNavLink' to="/dashboard">Dashboard</NavLink>
+                                    <NavLink  className="nav-link" activeclassname='activeNavLink' to="/dashboard">Dashboard</NavLink>
                                 </li> : null}
 
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link" activeclassname='activeNavLink' onClick={() => { sessionService.destroy() }} >Logout</a>
+                                    <a href="#" className="nav-link"  className="nav-link" activeclassname='activeNavLink' onClick={() => { sessionService.destroy() }} >Logout</a>
                                 </li> : null}
                         </ul>
                     </div>
