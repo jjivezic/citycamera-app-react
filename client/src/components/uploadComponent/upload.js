@@ -12,6 +12,10 @@ class Upload extends React.Component {
             file: ''
         }
         this.handleUpload = this.handleUpload.bind(this);
+        this.options = {
+            autoClose: 3000,
+            hideProgressBar: true,
+        };
     }
     handleChange = (e, results) => {
         console.log('e', e);
@@ -30,7 +34,8 @@ class Upload extends React.Component {
         const file = this.state.file;
 
         filesService.uploadImageAmazon(url, file).then(response => {
-            console.log('respons', response)
+            console.log('respons', response);
+            toast.success("Image uploaded successfully to Amazon !", this.options)
         }, error => {
             console.log('error>>>', error)
         })

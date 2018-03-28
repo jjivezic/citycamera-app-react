@@ -18,15 +18,15 @@ import Files from './files';
         this.deleteFile = this.deleteFile.bind(this);
     }
 
-    adminGetFiles(folder) {
-        adminService.adminListFiles(folder).then(response => {
-            this.setState({
-                files: response.data.files
-            });
-        }).catch(function (error) {
-            console.log('error getAllFilesForFolder admin', error);
-        });
-    }
+    // adminGetFiles(folder) {
+    //     adminService.adminListFiles(folder).then(response => {
+    //         this.setState({
+    //             files: response.data.files
+    //         });
+    //     }).catch(function (error) {
+    //         console.log('error getAllFilesForFolder admin', error);
+    //     });
+    // }
     userGetFiles(folder) {
         filesService.userFiles(folder).then(response => {
             this.setState({
@@ -35,32 +35,29 @@ import Files from './files';
         }).catch(function (error) {
             console.log('error getAllFilesForFolder', error);
         });
-    }
+   }
     getAllFilesForFolder = (folder) => {
-        if (sessionService.isAdmin()) {
-            this.adminGetFiles(folder)
-        } else {
-            this.userGetFiles(folder);
-        }
+this.userGetFiles(folder)
 
     }
     deleteFile(file, listFiles) {
+        console.log('file',file)
         let fileId = file;
-        if (sessionService.isAdmin()) {
-            adminService.adminDeleteFiles(fileId).then(response => {
-                listFiles.forEach(function (el, i) {
-                    if (el._id === file) {
-                        listFiles.splice(i, 1);
-                    }
-                })
-                this.setState({
-                    files: listFiles
-                });
-                toast.success("File is successfully deleted!", this.options)
-            }).catch(error => {
-                console.log('error Delete admin', error);
-            })
-        } else {
+        // if (sessionService.isAdmin()) {
+        //     adminService.adminDeleteFiles(fileId).then(response => {
+        //         listFiles.forEach(function (el, i) {
+        //             if (el._id === file) {
+        //                 listFiles.splice(i, 1);
+        //             }
+        //         })
+        //         this.setState({
+        //             files: listFiles
+        //         });
+        //         toast.success("File is successfully deleted!", this.options)
+        //     }).catch(error => {
+        //         console.log('error Delete admin', error);
+        //     })
+        // } else {
             filesService.deleteFiles(file).then(response => {
                 listFiles.forEach(function (el, i) {
                     if (el._id === file) {
@@ -78,7 +75,7 @@ import Files from './files';
                 toast.error("Error deleting file!", this.options)
             })
 
-        }
+       // }
     }
 
     render() {

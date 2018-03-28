@@ -34,28 +34,28 @@ class Navbar extends React.Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <NavLink className="navbar-brand" activeClassName='activeNavLink' to="/">CityCam</NavLink>
+                    <NavLink className="navbar-brand" activeclassname='activeNavLink' to="/">CityCam</NavLink>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             {!isAutentificated ? <li className="nav-item ">
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/login" exact>Login</NavLink>
+                                <NavLink activeclassname='activeNavLink' to="/login" exact>Login</NavLink>
                             </li> : null}
                             {!isAutentificated ? <li className="nav-item">
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/register">Register</NavLink>
+                                <NavLink activeclassname='activeNavLink' to="/register">Register</NavLink>
                             </li> : null}
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard">Dashboard</NavLink>
+                                    <NavLink  activeclassname='activeNavLink' to="/dashboard">Dashboard</NavLink>
                                 </li> : null}
 
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link" activeClassName='activeNavLink' onClick={() => { sessionService.destroy() }} >Logout</a>
+                                    <a href="#" className="nav-link" activeclassname='activeNavLink' onClick={() => { sessionService.destroy() }} >Logout</a>
                                 </li> : null}
                         </ul>
                     </div>

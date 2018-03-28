@@ -18,15 +18,15 @@ class Dashboard extends React.Component {
         this.isAdmin = this.isAdmin.bind(this);
     }
     getFolders() {
-        if (sessionService.isAdmin()) {
-            adminService.adminListFolders().then(response => {
-                this.setState({
-                    folders: response.data.folders
-                });
-            }).catch(function (error) {
-                console.log('error filesService admin', error);
-            });
-        } else {
+        // if (sessionService.isAdmin()) {
+        //     adminService.adminListFolders().then(response => {
+        //         this.setState({
+        //             folders: response.data.folders
+        //         });
+        //     }).catch(function (error) {
+        //         console.log('error filesService admin', error);
+        //     });
+        // } else {
             filesService.userFolders().then(response => {
                 this.setState({
                     folders: response.data.folders
@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
             }).catch(function (error) {
                 console.log('error filesService ', error);
             });
-        }
+      //}
     }
     componentDidMount() {
         this.getFolders();
@@ -49,15 +49,15 @@ class Dashboard extends React.Component {
                 <nav className="">
                     <ul className="">
                         <li>
-                            <NavLink activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
+                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
                         </li>
                         {this.isAdmin()  ?
                         <li>
-                            <NavLink activeClassName='activeNavLink'  to="/dashboard/users">Admin Update user</NavLink>
+                            <NavLink className="nav-link" activeClassName='activeNavLink'  to="/dashboard/users">Admin Update user</NavLink>
                         </li>
                        : null}
                         <li>
-                            <NavLink activeClassName='activeNavLink'  to="/dashboard/upload">Upload image</NavLink>
+                            <NavLink className="nav-link" activeClassName='activeNavLink'  to="/dashboard/upload">Upload image</NavLink>
                         </li> 
                     </ul>
                 </nav>
