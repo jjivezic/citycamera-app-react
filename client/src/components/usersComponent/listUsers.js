@@ -2,11 +2,11 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { sessionService } from '../../sessionService/storage';
 import { adminService } from '../../services/index';
+import { Link } from 'react-router-dom';
 
-
-export class Users extends React.Component {
-    constructor() {
-        super()
+class Users extends React.Component {
+    constructor(props) {
+        super(props)
         this.state = {
             users: [],
         }
@@ -15,9 +15,13 @@ export class Users extends React.Component {
             autoClose: 3000,
             hideProgressBar: true,
         };
+        this.options = {
+            autoClose: 3000,
+            hideProgressBar: true,
+        }
     }
 
-    getListOfUsers(){
+    getListOfUsers() {
         adminService.listUsers().then(response => {
             this.setState({
                 users: response.data
@@ -26,35 +30,37 @@ export class Users extends React.Component {
             console.log('error admin getListOfUsers', error);
         });
     }
-    componentWillMount() {
+    componentDidMount() {
         if (sessionService.isAdmin()) {
-         this.getListOfUsers();
+            this.getListOfUsers();
         }
+
     }
 
     handleInputChange(user) {
-        
-        user.isAdmin = !user.isAdmin;  
+        user.isAdmin = !user.isAdmin;
         adminService.adminUpdateUser(user).then(response => {
             this.getListOfUsers();
-            toast.success("User is successfully updated!",this.options);
-         }).catch(error => {
-            toast.error("Error updating user!",this.options)
-            });
+            toast.success("User is successfully updated!", this.options);
+        }).catch(error => {
+            toast.error("Error updating user!", this.options)
+        });
 
     }
     render() {
         let users = this.state.users;
-        console.log('users', users);
         return (
             <div>
                 <h1>List users</h1>
                 <ul>
                     {users.map((user, i) =>
-                        <li key={user._id}> {i} -{user.username}
+                        <li key={user._id}> {i}
+                            <Link to={`/dashboard/user/${user._id}`}>{user.username} </Link>
+                            <label htmlFor="">IsAdmin:</label>
                             <input type="checkbox"
-                            checked={user.isAdmin}
-                                onChange={() =>  this.handleInputChange(user)}/>
+                                checked={user.isAdmin}
+                                onChange={() => this.handleInputChange(user)} />
+                            <Link className="btn btn-primary edit-btn" to={`/dashboard/user/${user._id}`}>Edit </Link>
                         </li>
                     )}
                 </ul>
@@ -63,3 +69,4 @@ export class Users extends React.Component {
     }
 }
 
+export default Users;

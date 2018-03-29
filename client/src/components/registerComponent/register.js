@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link ,Switch} from "react-router-dom";
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 
-export class Register extends React.Component {
+ class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -42,31 +41,33 @@ export class Register extends React.Component {
             });
     }
     validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 3;
+        return this.state.username.length > 3 && this.state.password.length > 3;
     }
     render() {
         return (
+       
             <div className="auth-page">
                 <h1>Register page</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>  Username:</label>
-                        <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <input id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label>  Email:</label>
-                        <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <input id ="email" className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Password:</label>
-                        <input className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input id ="password" className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
                     <button className="btn btn-primary" disabled={!this.validateForm()}>Register</button>
                 </form>
-               <Link to='/'>Login</Link>
+               <a href="/#">Login</a>
             </div>
+        
         );
     }
 }
 
-
+export default Register;

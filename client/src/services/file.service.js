@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { sessionService } from '../sessionService/storage';
-
 var apiBaseUrl = "http://localhost:3000/";
 
 export const filesService = {
     userFolders,
     userFiles,
-    deleteFiles
+    deleteFiles,
+    getUploadLink,
+    uploadImageAmazon
 };
+    
 //let token = sessionService.getSessionToken();
 
 function  userFolders() {
@@ -19,4 +21,12 @@ function  userFiles(folder) {
 
 function  deleteFiles(fileId) {
     return axios.delete(apiBaseUrl + 'file/'+ sessionService.getUserId()+ '/delete/'+ fileId , { headers: {"x-access-token": sessionService.getSessionToken() } });
+}
+function  getUploadLink(fileData) {
+    console.log('File HTTP',fileData)
+    return axios.post(apiBaseUrl + 'file/'+ sessionService.getUserId()+ '/getUploadURL',fileData, { headers: {"x-access-token": sessionService.getSessionToken() } });
+}
+function uploadImageAmazon(presignedUrl, body) {
+console.log('amazonupload HTTP', presignedUrl, body)
+    return axios.put(presignedUrl, body)
 }

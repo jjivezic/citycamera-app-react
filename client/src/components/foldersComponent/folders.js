@@ -1,128 +1,73 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { sessionService } from '../../sessionService/storage';
+import { NavLink } from 'react-router-dom';
 import { filesService, adminService } from '../../services/';
-import { Files } from './files';
+import Files from './files';
 
-export class Folders extends React.Component {
+class Folders extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            folders: [],
-            files: []
+            folders: props.folders,
+            files: [],
+            activeIndex: 0
         };
         this.options = {
             autoClose: 3000,
             hideProgressBar: true,
         };
-        this.getAllFilesForFolder = this.getAllFilesForFolder.bind(this);
         this.deleteFile = this.deleteFile.bind(this);
     }
-    componentWillMount() {
-        if (sessionService.isAdmin()) {
-            adminService.adminListFolders().then(response => {
-                this.setState({
-                    folders: response.data.folders
-                });
-            }).catch(function (error) {
-                console.log('error filesService admin', error);
-            });
-        } else {
-            filesService.userFolders().then(response => {
-                this.setState({
-                    folders: response.data.folders
-                });
-            }).catch(function (error) {
-                console.log('error filesService ', error);
-            });
-        }
+    refreshFolderAfterDeleteFile = () => {
+        this.props.callbackFromParent(this.state.folders);
     }
-    adminGetFiles(event) {
-        adminService.adminListFiles(event.target.innerText).then(response => {
+
+    getAllFilesForFolder = (folder, index) => {
+        filesService.userFiles(folder).then(response => {
             this.setState({
-                files: response.data.files
+                files: response.data.files,
+                activeIndex: index
             });
-            this.props.history.push("/dashboard/folder/files");
-        }).catch(function (error) {
-            console.log('error getAllFilesForFolder admin', error);
-        });
-    }
-    userGetFiles(event) {
-        filesService.userFiles(event.target.innerText).then(response => {
-            this.setState({
-                files: response.data.files
-            });
-            this.props.history.push("/dashboard/folder/files");
         }).catch(function (error) {
             console.log('error getAllFilesForFolder', error);
         });
     }
-    getAllFilesForFolder = (event) => {
-        event.preventDefault();
-        if (sessionService.isAdmin()) {
-            this.adminGetFiles(event)
-        } else {
-            this.userGetFiles(event);
-        }
-
-    }
     deleteFile(file, listFiles) {
-        let fileId = file;
-        if (sessionService.isAdmin()) {
-            adminService.adminDeleteFiles(fileId).then(response => {
-                listFiles.forEach(function (el, i) {
-                    if (el._id === file) {
-                        listFiles.splice(i, 1);
-                    }
-                })
-                this.setState({
-                    files: listFiles
-                });
-                toast.success("File is successfully deleted!", this.options)
-            }).catch(error => {
-                toast.error("Error deleting file!", this.options)
-                console.log('error Delete admin', error);
-            })
-        } else {
-            filesService.deleteFiles(file).then(response => {
-                listFiles.forEach(function (el, i) {
-                    if (el._id === file) {
-                        listFiles.splice(i, 1);
-                    }
-                });
-                this.setState({
-                    files: listFiles
-                });
-                toast.success("File is successfully deleted!", this.options)
-            }).catch(error => {
-                toast.error("Error deleting file!", this.options)
-            })
-
-        }
+        filesService.deleteFiles(file).then(response => {
+            listFiles.forEach(function (el, i) {
+                if (el._id === file) {
+                    listFiles.splice(i, 1);
+                }
+            });
+            this.setState({
+                files: listFiles
+            });
+            toast.success("File is successfully deleted!", this.options);
+            this.refreshFolderAfterDeleteFile();
+        }).catch(error => {
+            toast.error("Error deleting file!", this.options)
+        })
     }
 
     render() {
-        const { match } = this.props;
-        let folders = this.state.folders;
-
+        let folders = this.props.folders;
         return (
-            <div>
+            <div className="folders-page">
                 <h1>Folders</h1>
                 <ul>
-                    {folders.map((folder, i) =>
-                        <li key={i}>
-                            <Link to={`/dashboard/folder/${folder}`}
-                                key={'folder-' + folder}
-                                onClick={this.getAllFilesForFolder} >{folder}
-                            </Link>
-                        </li>
-                    )}
+                    {folders.map((folder, index) => {
+                        const activeLink = this.state.activeIndex === index ? 'activeNavLink' : '';
+                        return <li key={index} >
+                            {/* className="folder-link" */}
+                            <NavLink to="/dashboard/folder" id={folder} key={index} className={activeLink} onClick={this.getAllFilesForFolder.bind(this, folder, index)} >
+                                {folder}</NavLink>  </li>
+                    })}
                 </ul>
-                <Route path={`${match.path}/files`} render={() => (
+                {this.state.files && this.state.files.length > 0 ?
                     <Files list={this.state.files} delete={this.deleteFile} />
-                )} />
+                    : null}
             </div>
         )
     }
 }
+export default Folders;

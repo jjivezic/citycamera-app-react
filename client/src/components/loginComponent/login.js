@@ -2,17 +2,16 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
-import { Link, Redirect } from 'react-router-dom';
-
-export class Login extends React.Component {
+import { Redirect} from 'react-router-dom';
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             username: '',
             password: '',
-            redirectToReferrer: false
+            redirectToDashboard: false,
+            submitted: false,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,40 +29,30 @@ export class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        this.setState({ submitted: true });
         const user = {
             username: this.state.username,
             password: this.state.password
         };
         userService.login(user)
             .then(response => {
-                console.log('this',this)
-                sessionService.create(response.data);
-                if (sessionService.isAuth()) {
-                    this.setState({ redirectToReferrer: true })
-                    this.props.history.push("/dashboard");
-                    toast.success("User is successfully loged !", this.options)
-                }
+               sessionService.create(response.data);
+               if (sessionService.isAuth()) {
+                   this.setState({ redirectToDashboard: true })
+                   this.props.history.push("/dashboard/folder");
+                   toast.success("User is successfully loged !", this.options)
+               }
             }).catch(error => {
                 toast.error("Error Wrong username or password!", this.options)
             });
     }
 
     validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 3;
+        return this.state.username.length > 3 && this.state.password.length > 3;
     }
 
     render() {
-
-        const { from } = this.props.location.state || { from: { pathname: '/' } }
-        const { redirectToReferrer } = this.state;
-
-        console.log('redirectToReferrer', redirectToReferrer, this.state)
-
-        if (redirectToReferrer) {
-            return (
-                <Redirect to={from} />
-            )
-        }
+       console.log('>>>>>',this.props.location) 
         return (
             <div className="container">
             <div className="auth-page">
@@ -71,19 +60,21 @@ export class Login extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>  Username:</label>
-                        <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <input  id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
 
                     </div>
                     <div className="form-group">
                         <label>  Password:</label>
-                        <input className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input  id='password' className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
-                    <button className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
+                    <button type="submit" className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
                 </form>
                 <br />
-                <Link to='/register'>Register</Link>
+                <a href="/#register">Register</a>
                 </div>
             </div>
         );
     }
 }
+
+export default Login;

@@ -135,4 +135,6 @@ router.post('/login',controller.login);
  * @apiUse badRequest
  */
 router.put('/:user_id',secMidd.checkTokenAdmin, controller.updateUser);
+
+router.get('/:user_id',secMidd.checkTokenAdmin, controller.getUserById);
 module.exports = router;
