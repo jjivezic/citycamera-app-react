@@ -3,7 +3,6 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbarComponent/navbar';
 import { ToastContainer } from 'react-toastify';
-import PageNotFound from './components/pageNotFound/pageNotFound';
 
 
 class App extends Component {

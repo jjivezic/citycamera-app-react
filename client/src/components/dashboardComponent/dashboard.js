@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import { sessionService } from '../../sessionService/storage';
-import { filesService, adminService } from '../../services/';
+import { filesService } from '../../services/';
 import Folders from '../foldersComponent/folders';
 import Users from '../usersComponent/listUsers';
 import PageNotFound from '../pageNotFound/pageNotFound';

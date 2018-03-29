@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom';
-import { filesService, adminService } from '../../services/';
+import { filesService } from '../../services/';
 import Files from './files';
 
 class Folders extends React.Component {
@@ -56,7 +56,7 @@ class Folders extends React.Component {
                 <h1>Folders</h1>
                 <ul>
                     {folders.map((folder, index) => {
-                        const activeLink = this.state.activeIndex === index ? 'activeNavLink' : '';
+                        const activeLink = this.state.activeIndex === index ? 'activeNavLink folder-link' : 'folder-link';
                         return <li key={index} >
                             {/* className="folder-link" */}
                             <NavLink to="/dashboard/folder" id={folder} key={index} className={activeLink} onClick={this.getAllFilesForFolder.bind(this, folder, index)} >
