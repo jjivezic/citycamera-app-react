@@ -2,7 +2,6 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
-import { Redirect} from 'react-router-dom';
 class Login extends React.Component {
 
     constructor(props) {

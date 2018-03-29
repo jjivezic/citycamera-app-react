@@ -1,7 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import FileReaderInput from 'react-file-reader-input';
-import { sessionService } from '../../sessionService/storage';
 import { filesService } from '../../services/';
 
 class Upload extends React.Component {
@@ -9,7 +8,8 @@ class Upload extends React.Component {
         super(props);
         this.state = {
             url: '',
-            file: ''
+            file: '',
+            disabled: false
         }
         this.handleUpload = this.handleUpload.bind(this);
         this.options = {
@@ -18,12 +18,15 @@ class Upload extends React.Component {
         };
     }
     handleChange = (e, results) => {
-        console.log('e', e);
+
         results.forEach(result => {
             const [e, file] = result;
             console.log(`Successfully uploaded ${file.name}!`);
             console.log('results', file);
-            this.setState({ file: file });
+            this.setState({
+                file: file,
+                disabled: true
+            });
             this.getUploadLink(file);
         });
 
@@ -31,11 +34,12 @@ class Upload extends React.Component {
     handleUpload = (event) => {
         const url = this.state.url;
         const file = this.state.file;
+
         filesService.uploadImageAmazon(url, file).then(response => {
             console.log('respons', response);
             toast.success("Image uploaded successfully to Amazon !", this.options)
         }, error => {
-            console.log('error handleUpload', error)
+            toast.success("Error uploading image to Amazon !", this.options)
         })
     }
 
@@ -68,8 +72,8 @@ class Upload extends React.Component {
                         {file.name}
                     </FileReaderInput>
                 </form>
-                <br/>
-                <button className="btn btn-primary" onClick={this.handleUpload}>Upload to amazon! </button>
+                <br />
+                <button className="btn btn-primary" onClick={this.handleUpload} disabled={!this.state.disabled}>Upload to amazon! </button>
             </div>
         )
     }
