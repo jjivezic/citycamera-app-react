@@ -21,7 +21,6 @@ class Upload extends React.Component {
         console.log('e', e);
         results.forEach(result => {
             const [e, file] = result;
-            //   this.props.dispatch(uploadFile(e.target.result));
             console.log(`Successfully uploaded ${file.name}!`);
             console.log('results', file);
             this.setState({ file: file });
@@ -32,12 +31,11 @@ class Upload extends React.Component {
     handleUpload = (event) => {
         const url = this.state.url;
         const file = this.state.file;
-
         filesService.uploadImageAmazon(url, file).then(response => {
             console.log('respons', response);
             toast.success("Image uploaded successfully to Amazon !", this.options)
         }, error => {
-            console.log('error>>>', error)
+            console.log('error handleUpload', error)
         })
     }
 
@@ -47,13 +45,12 @@ class Upload extends React.Component {
         let dotIndex = fileData.lastIndexOf(".");
         let fileName = fileData.slice(0, dotIndex);
         let fileExt = fileData.slice(dotIndex + 1);
-        console.log('file>>>', fileExt);
         let data = {
             file: fileName,
             ext: fileExt
         }
         filesService.getUploadLink(data).then(response => {
-            console.log('urll', response.data);
+            console.log('url', response.data);
             this.setState({ url: response.data.url });
         }).catch(function (error) {
             console.log('error filesService ', error);

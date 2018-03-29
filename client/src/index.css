@@ -28,3 +28,9 @@ img {
   color: rgb(104, 20, 238);
   font-weight: bold;
 }
+.form-edit-user{
+  width:60%;
+}
+.edit-btn {
+  padding: 0 10px;
+}

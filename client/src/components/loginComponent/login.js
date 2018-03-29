@@ -48,7 +48,7 @@ class Login extends React.Component {
     }
 
     validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 3;
+        return this.state.username.length > 3 && this.state.password.length > 3;
     }
 
     render() {

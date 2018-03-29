@@ -1,6 +1,5 @@
 import React from 'react';
 const Files = (props) => {
-        console.log('props',props)
         let url = 'https://citycamera.s3.eu-central-1.amazonaws.com/'
         let listFiles = props.list;
         return (

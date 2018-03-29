@@ -48,7 +48,7 @@ class Navbar extends React.Component {
                             </li> : null}
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <NavLink  className="nav-link" activeclassname='activeNavLink' to="/dashboard">Dashboard</NavLink>
+                                    <NavLink  className="nav-link" activeclassname='activeNavLink' to="/dashboard/folder">Dashboard</NavLink>
                                 </li> : null}
 
                         </ul>

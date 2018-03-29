@@ -1,8 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { NavLink, Route, Switch } from 'react-router-dom';
-
-import { sessionService } from '../../sessionService/storage';
+import { NavLink } from 'react-router-dom';
 import { filesService, adminService } from '../../services/';
 import Files from './files';
 
@@ -53,7 +51,6 @@ class Folders extends React.Component {
 
     render() {
         let folders = this.props.folders;
-
         return (
             <div className="folders-page">
                 <h1>Folders</h1>

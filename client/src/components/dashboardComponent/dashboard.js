@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
                 folders: response.data.folders
             });
         }).catch(function (error) {
-            console.log('error filesService ', error);
+            console.log('error getFolders ', error);
         });
     }
     componentDidMount() {
@@ -43,18 +43,19 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div>
+                Dashboard
                 <nav className="">
                     <ul className="">
                         <li>
-                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder" exact>Folders</NavLink>
+                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder" >Folders</NavLink>
                         </li>
                         {this.isAdmin() ?
                             <li>
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users " exact>Admin Update user</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users " >Admin Update user</NavLink>
                             </li>
                             : null}
                         <li>
-                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/upload" exact>Upload image</NavLink>
+                            <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/upload" >Upload image</NavLink>
                         </li>
                     </ul>
                 </nav>
