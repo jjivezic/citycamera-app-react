@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
         this.getFolders();
     }
     componentWillReceiveProps() {
-        this.getFolders();
+       // this.getFolders();
     }
     isAdmin() {
         return sessionService.isAdmin();
