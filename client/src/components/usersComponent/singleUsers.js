@@ -34,12 +34,12 @@ class UserPreview extends React.Component {
             console.log('error admin getListOfUsers', error);
         });
     }
-    componentWillMount() {
+    componentDidMount() {
         this.onRouteChanged();
     }
     //or componendDidUpdate
     componentWillReceiveProps(prevProps) {
-        console.log('.........',prevProps)
+        console.log('.........',prevProps,this.props.location)
         if (this.props.location !== prevProps.location) {
             this.onRouteChanged();
         }

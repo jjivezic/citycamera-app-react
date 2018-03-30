@@ -7,6 +7,9 @@ import Users from '../usersComponent/listUsers';
 import PageNotFound from '../pageNotFound/pageNotFound';
 import UserPreview from '../usersComponent/singleUsers';
 import Upload from '../uploadComponent/upload';
+import sinon from 'sinon';
+
+
 class Dashboard extends React.Component {
 
     constructor(props) {
@@ -15,6 +18,7 @@ class Dashboard extends React.Component {
             folders: [],
             isAdmin: false
         }
+        
         this.isAdmin = this.isAdmin.bind(this);
     }
     getFolders() {
@@ -30,7 +34,7 @@ class Dashboard extends React.Component {
         this.getFolders();
     }
     componentWillReceiveProps() {
-       // this.getFolders();
+       this.getFolders();
     }
     isAdmin() {
         return sessionService.isAdmin();
@@ -51,7 +55,7 @@ class Dashboard extends React.Component {
                         </li>
                         {this.isAdmin() ?
                             <li>
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users " >Admin Update user</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users" >Admin Update user</NavLink>
                             </li>
                             : null}
                         <li>

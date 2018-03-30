@@ -27,22 +27,21 @@ let files = {
 }
 mockAxios.onGet('http://localhost:3000/file/null/folder1/files').reply(200, files);
 
-//get Folders
-let folders = {
-    folders: ['2018-01-28', '2018-02-28']
-}
 
-mockAxios.onGet('http://localhost:3000/file/folders/null').reply(200, folders);
 
-const mountWithRouter = node => {
-    console.log('wraper>>>', node)
-    return mount(<Router>{node}</Router>);//za <Link da ne izbacuje da mora biti inside Router
+// const mountWithRouter = node => {
+//     console.log('wraper>>>', node)
+//     return mount(<Router>{node}</Router>);//za <Link da ne izbacuje da mora biti inside Router
 
-}
+// }
 describe('<Folders />', () => {
+
+    beforeEach(() => {
+
+    });
     it('On click show files', () => {
         const wrapper = mount(<Router><Folders folders={['folder1', 'folder2']} /></Router>);
-        console.log(wrapper.debug());
+      //  console.log(wrapper.debug());
         wrapper.find('a#my-folder1').simulate('click');
         setImmediate(() => {
             wrapper.update();
@@ -51,37 +50,15 @@ describe('<Folders />', () => {
         });
 
     })
-})
-
-
-
-describe('<Dashboard />', () => {
-    const mountWithRouter = node => mount(<Router>{node}</Router>);//za <Link da ne izbacuje da mora biti inside Router
-
-    it('calls componentDidMount() lifecycle method', () => {
-        const componentDidMountSpy = sinon.spy(Dashboard.prototype, 'componentDidMount');
-        const wrapper = mountWithRouter(<Dashboard />);
-        expect(Dashboard.prototype.componentDidMount.calledOnce).to.be.true;
-    });
-    it('calls getFolders() method', () => {
-        const getFoldersSpy = sinon.spy(Dashboard.prototype, 'getFolders');
-        const wrapper = mountWithRouter(<Dashboard />);
-
-        expect(Dashboard.prototype.getFolders.calledOnce).to.be.true;
-        wrapper.setState(folders);
-
-        setImmediate(() => {
-            ;
-            expect(wrapper.state('folders')).to.equal(folders.folders);
-            // expect(wrapper.state('folders')).to.have.length(2)
-        });
-    });
     it('check props for files', () => {
         const wrapper = mount(<Files listFiles={files.files} />);
+        //console.log(wrapper.getElement().props.listFiles);
         setImmediate(() => {
-            // wrapper.update();
+            wrapper.update();
             expect((wrapper.props().listFiles).length).to.equal(3);
         });
         //    console.log('len',wrapper.getElement());//for statelass component insted on instance()
     });
 })
+
+

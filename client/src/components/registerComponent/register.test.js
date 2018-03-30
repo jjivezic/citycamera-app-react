@@ -27,26 +27,27 @@ let data =   {
 mockAxios.onPost('http://localhost:3000/user/register', testUser).reply(200, data);
 
 describe('<Register />', () => {
+    let wrapper;
+    beforeEach(() => {
+        wrapper = mount(<Register />);
+    });
     // make our assertion and what we expect to happen 
     it('should render without throwing an error', () => {
-        let wrapper = mount(<Register />);
         expect(wrapper.find(Register).render().find('form')).to.have.length(1);
     })
     it('renders a username,password and email input', () => {
-        expect(shallow(<Register />).find('#username').length).to.equal(1);
-        expect(shallow(<Register />).find('#email').length).to.equal(1);
-        expect(shallow(<Register />).find('#password').length).to.equal(1)
+        expect(mount(<Register />).find('#username').length).to.equal(1);
+        expect(mount(<Register />).find('#email').length).to.equal(1);
+        expect(mount(<Register />).find('#password').length).to.equal(1)
     })
  
     it('should have an initial username,password and email state', () => {
-        let wrapper = mount(<Register />);
         expect(wrapper.state().username).to.equal('');
         expect(wrapper.state().email).to.equal('');   
         expect(wrapper.state().password).to.equal('');
     });
 
     it('should update state on click', function () {
-        const wrapper = mount(<Register />);
         const username = faker.name.firstName();
         const email = faker.internet.email();
         const password = faker.internet.password();
@@ -59,7 +60,6 @@ describe('<Register />', () => {
     });
 
     it('test register API on submit ', function () {
-        const wrapper = mount(<Register />);
         wrapper.setState({ username: 'jelena', password: '1234', email: 'email@yahoo.com' });
         wrapper.find('form').simulate('submit');
         // setImmediate(() => {
@@ -67,31 +67,18 @@ describe('<Register />', () => {
         // })
 
     })
+    it('username input should respond to change event and change the state of the Register Component', () => {
+        const username = faker.name.findName();
+        wrapper.find('#username').simulate('change', { target: { name: 'username', value: username } });
+        expect(wrapper.state('username')).to.equal(username);
+    })
+    it('email input should respond to change event and change the state of the Register Component', () => {
+        wrapper.find('#email').simulate('change', { target: { name: 'email', value: 'blah@gmail.com' } });
+        expect(wrapper.state('email')).to.equal('blah@gmail.com');
+    })
+    it('password input should respond to change event and change the state of the Register Component', () => {
+        wrapper.find('#password').simulate('change', { target: { name: 'password', value: '1234' } });
+        expect(wrapper.state('password')).to.equal('1234');
+    })
 })
-    describe('Username input', () => {
-        it('should respond to change event and change the state of the Register Component', () => {
-            const username = faker.name.findName();
-            const wrapper = shallow(<Register />);
-            wrapper.find('#username').simulate('change', { target: { name: 'username', value: username } });
 
-            expect(wrapper.state('username')).to.equal(username);
-        })
-    })
-    describe('Email input', () => {
-        it('should respond to change event and change the state of the Register Component', () => {
-            const wrapper = shallow(<Register />);
-            wrapper.find('#email').simulate('change', { target: { name: 'email', value: 'blah@gmail.com' } });
-            expect(wrapper.state('email')).to.equal('blah@gmail.com');
-        })
-    })
-
-    describe('Password input', () => {
-
-        it('should respond to change event and change the state of the Register Component', () => {
-
-            const wrapper = shallow(<Register />);
-            wrapper.find('#password').simulate('change', { target: { name: 'password', value: '1234' } });
-
-            expect(wrapper.state('password')).to.equal('1234');
-        })
-    })

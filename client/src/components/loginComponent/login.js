@@ -50,8 +50,7 @@ class Login extends React.Component {
         return this.state.username.length > 3 && this.state.password.length > 3;
     }
 
-    render() {
-       console.log('>>>>>',this.props.location) 
+    render() { 
         return (
             <div className="container">
             <div className="auth-page">
