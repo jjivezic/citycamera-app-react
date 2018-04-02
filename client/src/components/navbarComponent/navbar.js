@@ -40,8 +40,8 @@ class Navbar extends React.Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="nav navbar-nav mr-auto">
-                    {isAutentificated ?
+                        <ul className="nav navbar-nav mr-auto">
+                            {isAutentificated ?
                                 <li className="nav-item">
                                     <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder">Dashboard</NavLink>
                                 </li> : null} </ul>

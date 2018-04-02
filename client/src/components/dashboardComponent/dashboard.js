@@ -53,13 +53,13 @@ class Dashboard extends React.Component {
 
                         <h6>   Welcome Jelena</h6>
                     </div>
-                    <ul className="">
+                    <ul className="dash-navbar">
                         <li>
                             <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder" >Folders</NavLink>
                         </li>
                         {this.isAdmin() ?
                             <li>
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users" >Admin Update user</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users" >Update user</NavLink>
                             </li>
                             : null}
                         <li>

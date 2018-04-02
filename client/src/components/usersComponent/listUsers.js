@@ -55,15 +55,16 @@ class Users extends React.Component {
                 <ul className="users-list">
                     {users.map((user, i) =>
                         <li key={user._id}>
-                            <span>{i}</span>
-                            <Link to={`/dashboard/user/${user._id}`}>{user.username} </Link>
-                            <div>
+                            <span>{i + 1}</span>
+                            <p>{user.username} </p>
+                            <div className="list-right">
                                 <label htmlFor="">IsAdmin:</label>
                                 <input type="checkbox"
                                     checked={user.isAdmin}
                                     onChange={() => this.handleInputChange(user)} />
+                                      <Link className="btn btn-orange" to={`/dashboard/user/${user._id}`}>Edit </Link>
                             </div>
-                            <Link className="btn btn-orange" to={`/dashboard/user/${user._id}`}>Edit </Link>
+                          
                         </li>
                     )}
                 </ul>

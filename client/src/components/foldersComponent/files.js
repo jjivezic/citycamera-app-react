@@ -12,7 +12,7 @@ const Files = (props) => {
                             <img src={url + file._id + '.' + file.ext} alt={""} />
                             <div className="image-desc">
                                 <p key={file._id}>{file.filename}.{file.ext}</p>
-                                <button className="btn btn-danger" onClick={() => { props.delete(file._id, listFiles) }} >Delete</button>
+                                <button className="btn btn-orange" onClick={() => { props.delete(file._id, listFiles) }} >Delete</button>
                             </div>
                         </li>
                     )}

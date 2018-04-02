@@ -78,13 +78,10 @@ class UserPreview extends React.Component {
     }
     render() {
         return (
-            <div className="container">
-                <hr />
-                <h5>Edit User details</h5>
+            <div className="dashboard-view">
+                <h4 className="dash-title">Edit User details</h4>
                 <Link to={"/dashboard/users"}>Back to list</Link>
-                <hr />
                 <form className="form-edit-user text-left" onSubmit={this.handleSubmit}>
-
                     <div className="form-group">
                         <label htmlFor=""> Username:</label>
                         <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
@@ -103,7 +100,7 @@ class UserPreview extends React.Component {
                             name="isAdmin"
                             checked={this.state.isAdmin}
                             onChange={this.handleChange} /> </div>
-                    <button className="btn btn-primary" disabled={!this.validateForm()}>Update user</button>
+                    <button className="btn btn-orange" disabled={!this.validateForm()}>Update user</button>
                 </form>
                 <hr />
             </div>

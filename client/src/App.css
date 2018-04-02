@@ -39,7 +39,9 @@ li {
 a {
   font-size: 14px
 }
-
+a:hover {
+  transition: 0.4s
+}
 .btn-orange {
   color: #fff;
   background-color: #e95324;
@@ -51,13 +53,19 @@ a {
 }
 
 .dashboard-navbar .activeNavLink {
-  background: #636363;
+  background: #424242;
 }
 
 .folders-list .activeNavLink {
-  background: #c354416b;
+  background: #f8ded4;
 }
-
+.nav-link.activeNavLink {
+ color: white!important;
+  font-weight: bold;
+}
+.dash-navbar .nav-link.activeNavLink {
+  color: #e95324 !important;
+ }
 /* ----------------------Navbar main -------------------------*/
 
 nav.navbar {
@@ -68,11 +76,11 @@ nav.navbar {
   /*margin-right: 31px;*/
   font-family: 'Poiret One', cursive;
   text-transform: capitalize;
-  color: #e95324;
 }
 
 .navbar-light .navbar-brand {
-  color: rgb(255, 255, 255);
+  color: white;
+  font-weight: bold;
 }
 
 button.navbar-toggler {
@@ -94,7 +102,12 @@ nav.navbar.navbar-expand-lg.navbar-light {
   padding-right: 5px;
   color: #e95324;
 }
-
+.navbar-brand:hover {
+  color: white!important;
+}
+ .nav-link:hover {
+  color: rgba(232, 231, 231, 0.7)!important;;
+}
 /* .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
   color: #aba4b1;
 } */
@@ -131,13 +144,21 @@ nav.navbar.navbar-expand-lg.navbar-light {
 
 .auth h6 {
   border-bottom: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .auth .form-control {
   padding: 4px;
   border-radius: 0;
 }
-
+/* ----------------------Lending page-------------------------*/
+.lending-subtitle {
+  font-size: 20px;
+  /* color: #e95324; */
+  width: 70%;
+  margin: 0 auto;
+}
 /* ----------------------Dashboard page-------------------------*/
 
 .loged-user {
@@ -179,8 +200,8 @@ h4.dash-title {
 .uploaded-box,
 .files-box,
 .users-list {
-  background: #ecebeb;
-  border: 1px solid #e6e6e6;
+  background: #f5f5f5;
+  border: 1px solid #eae8e8;
   border-radius: 4px;
   padding: 20px;
   margin-top: 28px;
@@ -232,12 +253,11 @@ margin-left: 10px
   margin: 0;
 }
 
-.image-desc .btn.btn-danger {
-  padding: 2px 10px;
+.image-desc .btn-orange {
+  padding: 2px 12px;
+  margin-top: 5px;
   font-size: 13px;
-  margin-top: 8px;
 }
-
 /* ----------------------List folders-------------------------*/
 
 ul.folders-list {
@@ -246,7 +266,7 @@ ul.folders-list {
 
 .folders-list li a {
   font-size: 14px;
-  background: rgba(234, 225, 226, 0.5);
+  background: #f5f5f5;
   padding: 2px 15px;
   width: 200px;
   margin-bottom: 4px;
@@ -254,26 +274,52 @@ ul.folders-list {
 }
 
 /* ----------------------List users-------------------------*/
-
+.users-list{
+  padding: 8px;
+}
 .users-list li {
   display: flex;
   background: white;
   margin-bottom: 3px;
   padding: 5px;
+  align-items: center;
+
 }
 
 .users-list .btn.btn-orange {
   padding: 0 10px;
+  margin-left: 30px;
 }
 .users-list li span {
   width: 20px;
 }
+.users-list  input[type="checkbox"] {
+  margin-left: 6px;
+  position: relative;
+  top: 3px;
+}
+.users-list p  {
+  margin: 0;
+
+  }
+.users-list .list-right  {
+  width: 100%;
+  text-align: right;
+}
+.users-list .list-right label {
+margin: 0
+}
+
 /* ----------------------Edit user-------------------------*/
 
 .form-edit-user {
-  width: 60%;
+  background: #f5f5f5;
+  padding: 12px;
 }
-
+.form-edit-user a {
+  margin: 10px 0;
+  display: inline-block;
+}
 @media only screen and (min-width: 768px) {
   /* ----------------------Dashboard page-------------------------*/
   .dashboard-wraper {
@@ -295,10 +341,23 @@ ul.folders-list {
   .files-preview ul {
     justify-content: left;
   }
+
+.users-list{
+  padding: 20px;
+}
+
   /* ----------------------Login and register-------------------------*/
   .container.auth {
     width: 50%;
     margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .users-list {
+    width: 60%;
+  }
+  .form-edit-user {
+    width: 60%;
   }
 }
 
