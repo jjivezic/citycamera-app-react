@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
             folders: [],
             isAdmin: false
         }
-        
+
         this.isAdmin = this.isAdmin.bind(this);
     }
     getFolders() {
@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
         this.getFolders();
     }
     componentWillReceiveProps() {
-       this.getFolders();
+        this.getFolders();
     }
     isAdmin() {
         return sessionService.isAdmin();
@@ -46,9 +46,13 @@ class Dashboard extends React.Component {
     }
     render() {
         return (
-            <div>
-                Dashboard
-                <nav className="">
+            <div className="dashboard-wraper">
+                <div className="dashboard-navbar">
+                    <div className="loged-user">
+                        <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+
+                        <h6>   Welcome Jelena</h6>
+                    </div>
                     <ul className="">
                         <li>
                             <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder" >Folders</NavLink>
@@ -62,7 +66,7 @@ class Dashboard extends React.Component {
                             <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/upload" >Upload image</NavLink>
                         </li>
                     </ul>
-                </nav>
+                </div>
                 <Switch>
                     <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} callbackFromParent={this.refreshFolder} />} />
                     <Route path="/dashboard/users" component={Users} />

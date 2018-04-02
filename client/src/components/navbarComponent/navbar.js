@@ -32,31 +32,32 @@ class Navbar extends React.Component {
         const isAutentificated = this.state.isAutentificated;
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <NavLink className="navbar-brand" activeClassName='activeNavLink' to="/">CityCam</NavLink>
+
+
+                <nav className="navbar navbar-expand-lg navbar-light">
+                    <NavLink className="navbar-brand" to="/"><i className="fa fa-camera"></i>CityCam</NavLink>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
+                    <ul className="nav navbar-nav mr-auto">
+                    {isAutentificated ?
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder">Dashboard</NavLink>
+                                </li> : null} </ul>
+                        <ul className="nav navbar-nav ml-auto">
                             {!isAutentificated ? <li className="nav-item ">
-                                <NavLink className="nav-link"  activeClassName='activeNavLink' to="/login" exact>Login</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/login" exact><i className="fa fa-sign-in" aria-hidden="true"></i>Login</NavLink>
                             </li> : null}
                             {!isAutentificated ? <li className="nav-item">
-                                <NavLink  className="nav-link"  activeClassName='activeNavLink' to="/register">Register</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/register"><i className="fa fa-user" aria-hidden="true"></i>Register</NavLink>
                             </li> : null}
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <NavLink  className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder">Dashboard</NavLink>
+                                    <a href="#/" className="nav-link" className="nav-link" onClick={() => { sessionService.destroy() }} >Logout</a>
                                 </li> : null}
+                        </ul>
 
-                        </ul>
-                        <ul className="navbar-nav ml-auto">
-                            {isAutentificated ?
-                                <li className="nav-item">
-                                    <a href="#" className="nav-link"  className="nav-link"  onClick={() => { sessionService.destroy() }} >Logout</a>
-                                </li> : null}
-                        </ul>
                     </div>
                 </nav>
                 <Switch>

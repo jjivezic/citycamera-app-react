@@ -10,7 +10,7 @@ class Folders extends React.Component {
         this.state = {
             folders: props.folders,
             files: [],
-            activeIndex: 0
+            activeIndex: ''
         };
         this.options = {
             autoClose: 3000,
@@ -52,9 +52,9 @@ class Folders extends React.Component {
     render() {
         let folders = this.props.folders;
         return (
-            <div className="folders-page">
-                <h1>Folders</h1>
-                <ul>
+            <div className="dashboard-view">
+                <h4 className="dash-title">Folders</h4>
+                <ul className="folders-list">
                     {folders.map((folder, index) => {
                         const activeLink = this.state.activeIndex === index ? 'activeNavLink folder-link' : 'folder-link';
                         return <li key={index} >

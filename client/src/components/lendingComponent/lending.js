@@ -2,7 +2,8 @@ import React from 'react';
 const Lending = () => {
 
     return (
-        <div>
+        <div className="lending-page-container">
+         <a class="hiden" href="https://unsplash.com/@zacmeaney?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge"></a>
             <h1>Lending page</h1>
             <p>Lorem ipsum is a pseudo-Latin text used in web design,
                  typography, layout, and printing in place of English to

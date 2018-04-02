@@ -1,39 +1,310 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,700');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+/*Photos from https://unsplash.com/ */
+
+/* ----------------------General rules -------------------------*/
+
+body {
+  font-family: 'Raleway', sans-serif;
+  position: relative;
+  min-height: 100%;
+  color: #888;
+  font-size: 13px;
+  overflow-x: hidden;
+  background: #F7F7F7;
+  background-color: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0
+}
+
+a {
+  font-size: 14px
+}
+
+.btn-orange {
+  color: #fff;
+  background-color: #e95324;
+  border-color: #e95324;
+}
+
+.activeNavLink {
+  color: #e95324 !important;
+}
+
+.dashboard-navbar .activeNavLink {
+  background: #636363;
+}
+
+.folders-list .activeNavLink {
+  background: #c354416b;
+}
+
+/* ----------------------Navbar main -------------------------*/
+
+nav.navbar {
+  z-index: 1;
+}
+
+.navbar-brand {
+  /*margin-right: 31px;*/
+  font-family: 'Poiret One', cursive;
+  text-transform: capitalize;
+  color: #e95324;
+}
+
+.navbar-light .navbar-brand {
+  color: rgb(255, 255, 255);
+}
+
+button.navbar-toggler {
+  border: none;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light {
+  background: linear-gradient(rgba(0, 0, 0, 0.32), #2b2b2b);
+  /* background: rgba(255, 255, 255, 0.38); */
+  /* border-bottom: 1px solid #ffffff; */
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+}
+
+.nav-link i {
+  padding-right: 5px;
+  color: #e95324;
+}
+
+/* .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: #aba4b1;
+} */
+
+/* ----------------------Background for login register and lending page -------------------------*/
+
+.lending-page-container,
+.login-page-container,
+.register-page-container {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.32), #000000), url(./assets/images/bg.jpg);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
   text-align: center;
+  color: #fff;
+  background-position: center;
+  padding: 140px 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* ----------------------Login and register-------------------------*/
+
+.auth form {
+  padding: 39px 50px;
+  background: #0000005c;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.auth .form-group {
+  text-align: left;
+}
+
+.auth h6 {
+  border-bottom: 1px solid;
+}
+
+.auth .form-control {
+  padding: 4px;
+  border-radius: 0;
+}
+
+/* ----------------------Dashboard page-------------------------*/
+
+.loged-user {
+  text-align: center;
+  padding: 20px 0;
+  background: #2b2b2b;
+}
+
+.loged-user i {
+  font-size: 64px;
+  color: #fffbfb;
+}
+
+.loged-user h6 {
+  /* color: #e95324; */
+  margin-top: 10px
+}
+
+.dashboard-navbar li {
+  background: #292929;
+  border-bottom: 1px solid #636363;
+}
+
+.dashboard-navbar li a {
+  color: white
+}
+
+.dashboard-view {
   padding: 20px;
-  color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+h4.dash-title {
+  color: #989292;
+  border-bottom: 1px solid #e6e6e6;
 }
 
-.App-intro {
-  font-size: large;
+/* ----------------------Upload image-------------------------*/
+
+.uploaded-box,
+.files-box,
+.users-list {
+  background: #ecebeb;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 28px;
+}
+.uploaded-box .upload-btn{
+margin-left: 10px
+}
+.uploaded-box .upload-btn i{
+  color: #e95324;
+  font-size: 15px;
 }
 
+.uploaded-box form p {
+  margin: 0
+}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.uploaded-box form p span {
+  color: black;
+  font-weight: bold;
+}
+
+/* ----------------------List files-------------------------*/
+
+.files-preview ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.files-preview ul li {
+  margin: 10px;
+  border: 1px solid white;
+  /* padding: 10px; */
+  background: white;
+  width: 200px;
+}
+
+.files-preview img {
+  width: 200px;
+  height: 200px
+}
+
+.image-desc {
+  text-align: center;
+  padding: 10px;
+}
+
+.image-desc p {
+  margin: 0;
+}
+
+.image-desc .btn.btn-danger {
+  padding: 2px 10px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ----------------------List folders-------------------------*/
+
+ul.folders-list {
+  margin-bottom: 20px;
+}
+
+.folders-list li a {
+  font-size: 14px;
+  background: rgba(234, 225, 226, 0.5);
+  padding: 2px 15px;
+  width: 200px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+/* ----------------------List users-------------------------*/
+
+.users-list li {
+  display: flex;
+  background: white;
+  margin-bottom: 3px;
+  padding: 5px;
+}
+
+.users-list .btn.btn-orange {
+  padding: 0 10px;
+}
+.users-list li span {
+  width: 20px;
+}
+/* ----------------------Edit user-------------------------*/
+
+.form-edit-user {
+  width: 60%;
 }
 
 @media only screen and (min-width: 768px) {
-.auth-page {
-  width: 50%;
-  margin: 0 auto;
+  /* ----------------------Dashboard page-------------------------*/
+  .dashboard-wraper {
+    display: flex;
+  }
+  .dashboard-navbar {
+    width: 200px;
+    background: #424242;
+    min-height: 100vh;
+  }
+  .dashboard-view {
+    width: calc(100% - 200px);
+    background: white;
+    padding: 50px;
+  }
+  .loged-user {
+    background: none;
+  }
+  .files-preview ul {
+    justify-content: left;
+  }
+  /* ----------------------Login and register-------------------------*/
+  .container.auth {
+    width: 50%;
+    margin: 0 auto;
+  }
 }
-.auth-page .input-group{
-margin-bottom: 10px
-}
+
+@media only screen and (min-width: 1200px) {
+  /* .container.auth{
+    width: 40%;
+    margin: 0 auto;
+    } */
 }

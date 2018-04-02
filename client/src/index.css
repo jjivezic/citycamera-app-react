@@ -8,10 +8,7 @@ ul {
   list-style: none;
 }
 
-img {
-  width: 200px;
-  height: 200px
-}
+
 #nprogress .bar {
   background: rgb(13, 82, 230) !important;
 }
@@ -24,13 +21,5 @@ img {
   border-top-color: rgb(13, 82, 230) !important;
   border-left-color:  rgb(13, 82, 230) !important;
 }
-.activeNavLink{
-  color: rgb(104, 20, 238);
-  font-weight: bold;
-}
-.form-edit-user{
-  width:60%;
-}
-.edit-btn {
-  padding: 0 10px;
-}
+
+

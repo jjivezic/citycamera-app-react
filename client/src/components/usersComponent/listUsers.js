@@ -50,17 +50,20 @@ class Users extends React.Component {
     render() {
         let users = this.state.users;
         return (
-            <div>
-                <h1>List users</h1>
-                <ul>
+            <div className="dashboard-view">
+                <h4 className="dash-title">List users</h4>
+                <ul className="users-list">
                     {users.map((user, i) =>
-                        <li key={user._id}> {i}
+                        <li key={user._id}>
+                            <span>{i}</span>
                             <Link to={`/dashboard/user/${user._id}`}>{user.username} </Link>
-                            <label htmlFor="">IsAdmin:</label>
-                            <input type="checkbox"
-                                checked={user.isAdmin}
-                                onChange={() => this.handleInputChange(user)} />
-                            <Link className="btn btn-primary edit-btn" to={`/dashboard/user/${user._id}`}>Edit </Link>
+                            <div>
+                                <label htmlFor="">IsAdmin:</label>
+                                <input type="checkbox"
+                                    checked={user.isAdmin}
+                                    onChange={() => this.handleInputChange(user)} />
+                            </div>
+                            <Link className="btn btn-orange" to={`/dashboard/user/${user._id}`}>Edit </Link>
                         </li>
                     )}
                 </ul>
