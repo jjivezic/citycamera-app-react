@@ -35,12 +35,12 @@ class Login extends React.Component {
         };
         userService.login(user)
             .then(response => {
-               sessionService.create(response.data);
-               if (sessionService.isAuth()) {
-                   this.setState({ redirectToDashboard: true })
-                   this.props.history.push("/dashboard/folder");
-                   toast.success("User is successfully loged !", this.options)
-               }
+                sessionService.create(response.data);
+                if (sessionService.isAuth()) {
+                    this.setState({ redirectToDashboard: true })
+                    this.props.history.push("/dashboard/folder");
+                    toast.success("User is successfully loged !", this.options)
+                }
             }).catch(error => {
                 toast.error("Error Wrong username or password!", this.options)
             });
@@ -51,25 +51,27 @@ class Login extends React.Component {
     }
 
     render() {
-       console.log('>>>>>',this.props.location) 
         return (
-            <div className="container">
-            <div className="auth-page">
-                <h1>Login page</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>  Username:</label>
-                        <input  id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+            <div className="login-page-container">
+                <a className="hiden" href="https://unsplash.com/@zacmeaney?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge"></a>
+                <div className="container auth">
+                    <form onSubmit={this.handleSubmit}>
+                        <h6>Please sign in </h6>
+                        <div className="form-group">
+                            <label>  Username:</label>
+                            <input id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
 
-                    </div>
-                    <div className="form-group">
-                        <label>  Password:</label>
-                        <input  id='password' className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
-                    </div>
-                    <button type="submit" className="btn btn-primary" disabled={!this.validateForm()} >Login</button>
-                </form>
-                <br />
-                <a href="/#register">Register</a>
+                        </div>
+                        <div className="form-group">
+                            <label>  Password:</label>
+                            <input id='password' className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+                        </div>
+                        <button type="submit" className="btn btn-orange" disabled={!this.validateForm()} >Login</button>
+                        <p>Don't have an account yet? <a className="text-success" routerlink="/#register" href="#/register">
+                            <strong>Sign up!</strong></a>
+                        </p>
+                    </form>
+
                 </div>
             </div>
         );

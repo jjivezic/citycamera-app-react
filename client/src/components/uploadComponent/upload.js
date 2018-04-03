@@ -21,8 +21,8 @@ class Upload extends React.Component {
 
         results.forEach(result => {
             const [e, file] = result;
-            console.log(`Successfully uploaded ${file.name}!`);
-            console.log('results', file);
+           // console.log(`Successfully uploaded ${file.name}!`);
+           // console.log('results', file);
             this.setState({
                 file: file,
                 disabled: true
@@ -36,7 +36,7 @@ class Upload extends React.Component {
         const file = this.state.file;
 
         filesService.uploadImageAmazon(url, file).then(response => {
-            console.log('respons', response);
+            this.props.history.push("/dashboard/folder");
             toast.success("Image uploaded successfully to Amazon !", this.options)
         }, error => {
             toast.success("Error uploading image to Amazon !", this.options)
@@ -64,16 +64,22 @@ class Upload extends React.Component {
     render() {
         let file = this.state.file;
         return (
-            <div>
-                <form>
-                    <FileReaderInput as="binary" id="my-file-input"
-                        onChange={this.handleChange}>
-                        <div>Upload a File:   <button><i className="fa fa-folder"></i></button></div>
-                        {file.name}
-                    </FileReaderInput>
-                </form>
-                <br />
-                <button className="btn btn-primary" onClick={this.handleUpload} disabled={!this.state.disabled}>Upload to amazon! </button>
+            <div className="dashboard-view">
+                <h4 className="dash-title">Upload images</h4>
+                <div className="uploaded-box">
+                    <form>
+                        <FileReaderInput as="binary" id="my-file-input"
+                            onChange={this.handleChange}>
+                            <div>
+
+                                <p> Upload image from your computer:<button className="upload-btn"> Choose file <i className="fa fa-folder"></i></button>  <span>{file.name}</span> </p>
+
+                            </div>
+                        </FileReaderInput>
+                    </form>
+                    <br />
+                    <button className="btn btn-orange" onClick={this.handleUpload} disabled={!this.state.disabled}>Upload to amazon! </button>
+                </div>
             </div>
         )
     }

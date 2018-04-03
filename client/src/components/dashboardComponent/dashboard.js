@@ -7,15 +7,26 @@ import Users from '../usersComponent/listUsers';
 import PageNotFound from '../pageNotFound/pageNotFound';
 import UserPreview from '../usersComponent/singleUsers';
 import Upload from '../uploadComponent/upload';
+import sinon from 'sinon';
+
+
 class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             folders: [],
-            isAdmin: false
+            isAdmin: false,
+            user: {}
         }
+
         this.isAdmin = this.isAdmin.bind(this);
+    }
+    getUserName() {
+        let user = sessionService.getUser();
+        this.setState({
+            user: user
+        })
     }
     getFolders() {
         filesService.userFolders().then(response => {
@@ -28,6 +39,7 @@ class Dashboard extends React.Component {
     }
     componentDidMount() {
         this.getFolders();
+        this.getUserName()
     }
     componentWillReceiveProps() {
         this.getFolders();
@@ -41,24 +53,28 @@ class Dashboard extends React.Component {
         });
     }
     render() {
+        let user = this.state.user.username;
         return (
-            <div>
-                Dashboard
-                <nav className="">
-                    <ul className="">
+            <div className="dashboard-wraper">
+                <div className="dashboard-navbar">
+                    <div className="loged-user">
+                        <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+                        <h6> Welcome, <span>{user}</span>  </h6>
+                    </div>
+                    <ul className="dash-navbar">
                         <li>
                             <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/folder" >Folders</NavLink>
                         </li>
                         {this.isAdmin() ?
                             <li>
-                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users " >Admin Update user</NavLink>
+                                <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/users" >Update user</NavLink>
                             </li>
                             : null}
                         <li>
                             <NavLink className="nav-link" activeClassName='activeNavLink' to="/dashboard/upload" >Upload image</NavLink>
                         </li>
                     </ul>
-                </nav>
+                </div>
                 <Switch>
                     <Route path="/dashboard/folder" render={() => <Folders folders={this.state.folders} callbackFromParent={this.refreshFolder} />} />
                     <Route path="/dashboard/users" component={Users} />
