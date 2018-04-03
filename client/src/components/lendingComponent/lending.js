@@ -1,5 +1,5 @@
 import React from 'react';
-const Lending = () => {
+const Lending = (props) => {
 
     return (
         <div className="lending-page-container">
