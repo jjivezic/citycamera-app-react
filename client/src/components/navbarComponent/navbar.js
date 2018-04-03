@@ -40,6 +40,7 @@ class Navbar extends React.Component {
 
 
                 <nav className="navbar navbar-expand-lg navbar-light">
+                <div className="container">
                     <NavLink className="navbar-brand" to="/"><i className="fa fa-camera"></i>CityCam</NavLink>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -63,6 +64,7 @@ class Navbar extends React.Component {
                                 </li> : null}
                         </ul>
 
+                    </div>
                     </div>
                 </nav>
                 <Switch>
