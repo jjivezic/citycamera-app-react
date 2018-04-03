@@ -173,6 +173,9 @@ nav.navbar.navbar-expand-lg.navbar-light {
     letter-spacing: 1px;
     text-shadow: 1px 1px 1px #383838;
 }
+.image-cam {
+  width: 140px;
+}
 .download-box {
   text-align: center;
   margin: 40px 0;
