@@ -47,11 +47,11 @@ class Register extends React.Component {
         return (
 
             <div className="register-page-container">
-                <a class="hiden" href="https://unsplash.com/@zacmeaney?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge"></a>
+                <a className="hiden" href="https://unsplash.com/@zacmeaney?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge"></a>
                 <div className="container auth">
-              
+
                     <form onSubmit={this.handleSubmit}>
-                    <h6>Create new account </h6>
+                        <h6>Create new account </h6>
                         <div className="form-group">
                             <label>  Username:</label>
                             <input id='username' className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
@@ -65,10 +65,10 @@ class Register extends React.Component {
                             <input id="password" className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                         </div>
                         <button className="btn btn-orange" disabled={!this.validateForm()}>Register</button>
-                        <p>You already have account! <a class="text-success"  href="#/login"><strong _ngcontent-c11="">Sign in!</strong></a>
-                </p>  
+                        <p>You already have account! <a className="text-success" href="#/login"><strong _ngcontent-c11="">Sign in!</strong></a>
+                        </p>
                     </form>
-                
+
                 </div>
             </div>
 

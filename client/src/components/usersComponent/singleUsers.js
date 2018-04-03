@@ -39,7 +39,6 @@ class UserPreview extends React.Component {
     }
     //or componendDidUpdate
     componentWillReceiveProps(prevProps) {
-        console.log('.........',prevProps,this.props.location)
         if (this.props.location !== prevProps.location) {
             this.onRouteChanged();
         }

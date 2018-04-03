@@ -16,10 +16,17 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {
             folders: [],
-            isAdmin: false
+            isAdmin: false,
+            user: {}
         }
 
         this.isAdmin = this.isAdmin.bind(this);
+    }
+    getUserName() {
+        let user = sessionService.getUser();
+        this.setState({
+            user: user
+        })
     }
     getFolders() {
         filesService.userFolders().then(response => {
@@ -32,6 +39,7 @@ class Dashboard extends React.Component {
     }
     componentDidMount() {
         this.getFolders();
+        this.getUserName()
     }
     componentWillReceiveProps() {
         this.getFolders();
@@ -45,13 +53,13 @@ class Dashboard extends React.Component {
         });
     }
     render() {
+        let user = this.state.user.username;
         return (
             <div className="dashboard-wraper">
                 <div className="dashboard-navbar">
                     <div className="loged-user">
                         <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-
-                        <h6>   Welcome Jelena</h6>
+                        <h6> Welcome, <span>{user}</span>  </h6>
                     </div>
                     <ul className="dash-navbar">
                         <li>

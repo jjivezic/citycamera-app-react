@@ -13,6 +13,7 @@ class Navbar extends React.Component {
         this.state = {
             isAutentificated: false
         }
+        this.logout = this.logout.bind(this);
     }
     componentDidMount() {
         this.isAdmin();
@@ -27,6 +28,10 @@ class Navbar extends React.Component {
         } else {
             this.setState({ isAutentificated: false });
         }
+    }
+    logout() {
+        sessionService.destroy();
+
     }
     render() {
         const isAutentificated = this.state.isAutentificated;
@@ -54,7 +59,7 @@ class Navbar extends React.Component {
                             </li> : null}
                             {isAutentificated ?
                                 <li className="nav-item">
-                                    <a href="#/" className="nav-link" className="nav-link" onClick={() => { sessionService.destroy() }} >Logout</a>
+                                    <NavLink to="/login" className="nav-link" className="nav-link" onClick={this.logout} >Logout</NavLink>
                                 </li> : null}
                         </ul>
 

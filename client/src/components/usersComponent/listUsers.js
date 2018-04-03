@@ -62,9 +62,9 @@ class Users extends React.Component {
                                 <input type="checkbox"
                                     checked={user.isAdmin}
                                     onChange={() => this.handleInputChange(user)} />
-                                      <Link className="btn btn-orange" to={`/dashboard/user/${user._id}`}>Edit </Link>
+                                <Link className="btn btn-orange" to={`/dashboard/user/${user._id}`}>Edit </Link>
                             </div>
-                          
+
                         </li>
                     )}
                 </ul>

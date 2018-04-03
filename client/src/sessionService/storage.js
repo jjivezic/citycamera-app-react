@@ -22,7 +22,12 @@ export const sessionService = {
     return (user) ? user.user._id : "";
   },
 
-
+  getUser() {
+    let data = localStorage.getItem('user');
+    if (!data) return null;
+    var user = JSON.parse(data);
+    return (user) ? user.user : "";
+  },
   getSessionToken() {
     let data = localStorage.getItem('user');
     if (!data) return null;

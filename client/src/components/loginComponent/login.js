@@ -53,7 +53,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="login-page-container">
-                <a class="hiden" href="https://unsplash.com/@zacmeaney?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge"></a>
+                <a className="hiden" href="https://unsplash.com/@zacmeaney?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge"></a>
                 <div className="container auth">
                     <form onSubmit={this.handleSubmit}>
                         <h6>Please sign in </h6>
@@ -67,7 +67,7 @@ class Login extends React.Component {
                             <input id='password' className="form-control" type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                         </div>
                         <button type="submit" className="btn btn-orange" disabled={!this.validateForm()} >Login</button>
-                        <p _ngcontent-c10="">Don't have an account yet? <a class="text-success" routerlink="/#register" href="#/register">
+                        <p>Don't have an account yet? <a className="text-success" routerlink="/#register" href="#/register">
                             <strong>Sign up!</strong></a>
                         </p>
                     </form>

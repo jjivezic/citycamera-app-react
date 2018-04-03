@@ -58,12 +58,12 @@ class Folders extends React.Component {
                     {folders.map((folder, index) => {
                         const activeLink = this.state.activeIndex === index ? 'activeNavLink folder-link' : 'folder-link';
                         return <li key={index} >
-                            <NavLink to="/dashboard/folder" id={"my-" +folder} key={index} className={activeLink} onClick={this.getAllFilesForFolder.bind(this, folder, index)} >
+                            <NavLink to="/dashboard/folder" id={"my-" + folder} key={index} className={activeLink} onClick={this.getAllFilesForFolder.bind(this, folder, index)} >
                                 {folder}</NavLink>  </li>
                     })}
                 </ul>
                 {this.state.files && this.state.files.length > 0 ?
-                    <Files  list={this.state.files} delete={this.deleteFile} />
+                    <Files list={this.state.files} delete={this.deleteFile} />
                     : null}
             </div>
         )

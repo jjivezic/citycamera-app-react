@@ -39,9 +39,11 @@ li {
 a {
   font-size: 14px
 }
+
 a:hover {
   transition: 0.4s
 }
+
 .btn-orange {
   color: #fff;
   background-color: #e95324;
@@ -59,13 +61,16 @@ a:hover {
 .folders-list .activeNavLink {
   background: #f8ded4;
 }
+
 .nav-link.activeNavLink {
- color: white!important;
+  color: white !important;
   font-weight: bold;
 }
+
 .dash-navbar .nav-link.activeNavLink {
   color: #e95324 !important;
- }
+}
+
 /* ----------------------Navbar main -------------------------*/
 
 nav.navbar {
@@ -102,12 +107,16 @@ nav.navbar.navbar-expand-lg.navbar-light {
   padding-right: 5px;
   color: #e95324;
 }
+
 .navbar-brand:hover {
-  color: white!important;
+  color: white !important;
 }
- .nav-link:hover {
-  color: rgba(232, 231, 231, 0.7)!important;;
+
+.nav-link:hover {
+  color: rgba(232, 231, 231, 0.7) !important;
+  ;
 }
+
 /* .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
   color: #aba4b1;
 } */
@@ -152,12 +161,43 @@ nav.navbar.navbar-expand-lg.navbar-light {
   padding: 4px;
   border-radius: 0;
 }
+
 /* ----------------------Lending page-------------------------*/
+
 .lending-subtitle {
   font-size: 20px;
   /* color: #e95324; */
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
+  line-height: 23px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px #383838;
+}
+.download-box {
+  text-align: center;
+  margin: 40px 0;
+  background: #0000005e;
+
+  padding: 20px 10px;
+}
+.android {
+  background: url(./assets/images/android.png);
+  height: 55px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.download-box h5 {
+  color: #e95325;
+  font-size: 27px;
+  padding: 5px;
+}
+.lending-page-container h1{
+  font-size: 35px;
+  text-transform: uppercase;
+  border-bottom: 1px dashed black;
+  margin-bottom: 30px;
+  color: black;
 }
 /* ----------------------Dashboard page-------------------------*/
 
@@ -176,7 +216,10 @@ nav.navbar.navbar-expand-lg.navbar-light {
   /* color: #e95324; */
   margin-top: 10px
 }
+.loged-user h6 span{
+  color: #e95324;
 
+}
 .dashboard-navbar li {
   background: #292929;
   border-bottom: 1px solid #636363;
@@ -206,10 +249,12 @@ h4.dash-title {
   padding: 20px;
   margin-top: 28px;
 }
-.uploaded-box .upload-btn{
-margin-left: 10px
+
+.uploaded-box .upload-btn {
+  margin-left: 10px
 }
-.uploaded-box .upload-btn i{
+
+.uploaded-box .upload-btn i {
   color: #e95324;
   font-size: 15px;
 }
@@ -258,6 +303,7 @@ margin-left: 10px
   margin-top: 5px;
   font-size: 13px;
 }
+
 /* ----------------------List folders-------------------------*/
 
 ul.folders-list {
@@ -274,40 +320,45 @@ ul.folders-list {
 }
 
 /* ----------------------List users-------------------------*/
-.users-list{
+
+.users-list {
   padding: 8px;
 }
+
 .users-list li {
   display: flex;
   background: white;
   margin-bottom: 3px;
   padding: 5px;
   align-items: center;
-
 }
 
 .users-list .btn.btn-orange {
   padding: 0 10px;
   margin-left: 30px;
 }
+
 .users-list li span {
   width: 20px;
 }
-.users-list  input[type="checkbox"] {
+
+.users-list input[type="checkbox"] {
   margin-left: 6px;
   position: relative;
   top: 3px;
 }
-.users-list p  {
-  margin: 0;
 
-  }
-.users-list .list-right  {
+.users-list p {
+  margin: 0;
+}
+
+.users-list .list-right {
   width: 100%;
   text-align: right;
 }
+
 .users-list .list-right label {
-margin: 0
+  margin: 0
 }
 
 /* ----------------------Edit user-------------------------*/
@@ -316,10 +367,12 @@ margin: 0
   background: #f5f5f5;
   padding: 12px;
 }
+
 .form-edit-user a {
   margin: 10px 0;
   display: inline-block;
 }
+
 @media only screen and (min-width: 768px) {
   /* ----------------------Dashboard page-------------------------*/
   .dashboard-wraper {
@@ -341,23 +394,32 @@ margin: 0
   .files-preview ul {
     justify-content: left;
   }
-
-.users-list{
-  padding: 20px;
-}
-
+  .users-list {
+    padding: 20px;
+  }
   /* ----------------------Login and register-------------------------*/
   .container.auth {
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
   }
+
+  .lending-page-container h1{
+    font-size: 45px;
+  }
 }
+
 @media only screen and (min-width: 992px) {
   .users-list {
     width: 60%;
   }
   .form-edit-user {
     width: 60%;
+  }
+  /* ----------------------Lending page-------------------------*/
+  .lending-subtitle {
+    font-size: 27px;
+    line-height: 29px;
+    width: 70%;
   }
 }
 
@@ -366,4 +428,8 @@ margin: 0
     width: 40%;
     margin: 0 auto;
     } */
+    .container.auth {
+      width: 40%;
+      margin: 0 auto;
+    }
 }

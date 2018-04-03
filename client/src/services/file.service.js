@@ -23,10 +23,8 @@ function  deleteFiles(fileId) {
     return axios.delete(apiBaseUrl + 'file/'+ sessionService.getUserId()+ '/delete/'+ fileId , { headers: {"x-access-token": sessionService.getSessionToken() } });
 }
 function  getUploadLink(fileData) {
-    console.log('File HTTP',fileData)
     return axios.post(apiBaseUrl + 'file/'+ sessionService.getUserId()+ '/getUploadURL',fileData, { headers: {"x-access-token": sessionService.getSessionToken() } });
 }
 function uploadImageAmazon(presignedUrl, body) {
-console.log('amazonupload HTTP', presignedUrl, body)
     return axios.put(presignedUrl, body)
 }
