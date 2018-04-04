@@ -1,7 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { toast } from 'react-toastify';
 import { userService } from '../../services/user.service';
 import { sessionService } from '../../sessionService/storage';
+import * as loginActions from '../../actions/loginActions';
+
 class Login extends React.Component {
 
     constructor(props) {
@@ -33,6 +36,7 @@ class Login extends React.Component {
             username: this.state.username,
             password: this.state.password
         };
+        this.props.dispatch(loginActions.loginActions(this.state.username))
         userService.login(user)
             .then(response => {
                 sessionService.create(response.data);
@@ -78,4 +82,10 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+function mapStateToProps(state,ownProps){
+return {
+    login:state.login
+}
+}
+
+export default connect(mapStateToProps)(Login);

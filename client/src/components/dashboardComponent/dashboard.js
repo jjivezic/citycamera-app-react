@@ -39,7 +39,8 @@ class Dashboard extends React.Component {
     }
     componentDidMount() {
         this.getFolders();
-        this.getUserName()
+        this.getUserName();
+    console.log('PROPSSSS',this.props)
     }
     componentWillReceiveProps() {
         this.getFolders();

@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
-import Login from '../loginComponent/login';
-import Register from '../registerComponent/register';
-import Lending from '../lendingComponent/lending';
-import { PrivateRoute } from '../../privateRoute/privateRoute';
-import Dashboard from '../dashboardComponent/dashboard';
-import { sessionService } from '../../sessionService/storage';
+import Login from '../../loginComponent/login';
+import Register from '../../registerComponent/register';
+import Lending from '../../lendingComponent/lending';
+import { PrivateRoute } from '../../../privateRoute/privateRoute';
+import Dashboard from '../../dashboardComponent/dashboard';
+import { sessionService } from '../../../sessionService/storage';
 
 class Navbar extends React.Component {
     constructor(props) {

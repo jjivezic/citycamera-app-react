@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Navbar from './components/navbarComponent/navbar';
+import Navbar from './components/common/navbarComponent/navbar';
 import { ToastContainer } from 'react-toastify';
 
 
@@ -19,4 +19,5 @@ class App extends Component {
   }
 }
 //https://www.sitepoint.com/react-router-v4-complete-guide/ Protected routes
+
 export default App;
